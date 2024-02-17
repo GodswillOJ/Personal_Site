@@ -59,9 +59,9 @@ const userSchema = new  mongoose.Schema({
 
 
 
-const Population = mongoose.model('Population', popSchema);
+const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('User', userSchema);
 
-export {Population, User};
+export {Post, User};
 
 
