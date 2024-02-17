@@ -1,0 +1,537 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+/* Other styles for your app */
+
+
+html{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  font-family: 'Lora', serif;
+  font-family: 'News Cycle', sans-serif;
+  font-family: 'Yrsa', serif;
+  background-color: white;
+  font-family: 'EB Garamond', serif;
+  transition: background-color 0.5s ease; 
+}
+
+/* for theme change */
+#theme_button {
+  position: relative;
+  /* right:250px;
+  top: 20px; */
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  margin-top: 0;
+}
+
+body.dark-theme{
+  background: linear-gradient(to right, #161919, #43191d);
+}
+body.dark-theme .Counter_Engine {
+  color: white;
+}
+body.dark-theme .Counter_Engine .Title {
+  color: rgb(182, 214, 221);
+  text-shadow: 0px 0.1px 0px rgb(243, 246, 246);
+}
+body.dark-theme .Counter_Engine .Title:hover {
+  color: rgb(227, 173, 219);
+}
+
+.dark-theme .order-chart{
+  position: relative;
+  box-shadow: 2px 4px 6px rgba(243, 246, 247, 0.1);
+}
+.userDashBoard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+/* for sidebar */
+header{
+  display: block;
+  width: auto;
+  border-right: 1px solid #c3c2c2;
+  height: 200rem;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #7f3f21, #782a30);
+  z-index: 99;
+  font-family: 'Lora', serif;
+  overflow-y: hidden;
+}
+header a {
+  list-style: none;
+  text-decoration: none;
+}
+
+.dropdown-content{
+  margin: 70px 0 0 0;
+}
+header a li p{
+  text-align: left;
+  margin: 0;
+  /* padding-left: 10px; */
+  color: #f9f5f5;
+}
+header a li:hover p{
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+header ul a li:hover {
+  background-color: rgba(244, 248, 247, 0.5);
+}
+header ul{
+  /* margin-top: 2rem; */
+  margin: 2rem 0 0 10px;
+  padding: 0;
+}
+header ul li{
+  /* margin-top: 2rem; */
+  padding: 4px 10px 4px 10px;
+}
+
+header .logo_dash li {
+  padding: 20px;
+  border-bottom: 1px solid #c3c2c2;
+}
+#my_logo{
+  display: none;
+}
+
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 150px;
+  background-color: #fff; /* Add your preferred background color */
+   /* Adjust the z-index as needed */
+}
+
+main{
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.logo{
+  text-decoration: none;
+  padding-left: 5px;
+  color: #ddeaf7;
+  font-family: 'News Cycle', sans-serif;
+}
+#dash_board {
+  flex: 1;
+  padding-left: 160px;
+}
+
+
+.navbar{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  /* border-bottom: 1px solid #c3c2c2; */
+  align-items: center;
+  width: 100%;
+  line-height: 10px;
+  z-index: 999;
+  background: linear-gradient(to right, #dd1568, #9e164f);
+  box-shadow: 0px 10px 6px rgba(247, 247, 250, 0.1);
+
+}
+.menu{
+  position: relative;
+  display: flex;
+  justify-content: right;
+  padding-right: 20px;
+}
+.menu a {
+  position: relative;
+  text-decoration: none;
+}
+.menu a li{
+  position: relative;
+  color: #fff;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+.menu a li:hover{
+  background-color: rgb(251, 250, 250, 0.1);
+}
+
+.hamburger{
+  display: none;
+}
+
+
+/* for subbmenu */
+
+.submenu {
+  position: absolute;
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 230%;
+  left: 0;
+  background-color: rgba(0, 3, 6, 0.1);
+  box-shadow: 2px 4px 6px rgba(15, 16, 16, 0.1);
+}
+
+.menu.open a:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submenu li:hover {
+  background-color: #555;
+}
+
+#sub_menu_user {
+  list-style: none;
+  padding-top: 8px;
+}
+
+#sub_menu_user #icon001{
+  color: #fff;
+  padding-right: 0;
+}
+
+
+#sub_menu_user .sub_li{
+  position: relative;
+} 
+
+
+/* Counter Container  */
+.CounterCont{
+  position: relative;
+  background-color: none;
+  background-color: none;
+  margin: 7rem 5rem 0 5rem;
+  font-family: 'News Cycle', sans-serif;
+  border-radius: 5px;
+}
+
+.Counter_Engine{
+  position: relative;
+  width: 100%;
+  height: 27rem;
+  padding: 15px;
+}
+.Counter_Engine h1{
+  position: relative;
+  font-weight: bold;
+  color: #43467a;
+  text-align: center;
+}
+.Counter_Engine .Title{
+  color: #151fdd;
+  /* font-style: italic; */
+  font-family: 'EB Garamond', serif;
+}
+.Counter_Engine label{
+  position: relative;
+  font-style: italic;
+  font-family: 'EB Garamond', serif;
+}
+.Counter_Engine input{
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #e8e8ea;
+  box-shadow: 2px 4px 6px rgba(15, 16, 16, 0.1);
+  border-radius: 8px;
+}
+.Counter_Engine button{
+  position: relative;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #1815dd, #16569e);
+  margin-top: 30px;
+  padding: 10px;
+}
+.Counter_Engine button:hover{
+  position: relative;
+  background: #cf5594;
+}
+
+.btn2{
+  position: relative;
+  font-family: 'News Cycle', sans-serif;
+  color: #fff;
+  font-size: 18px;
+}
+.btn1{
+  position: relative;
+  font-family: 'News Cycle', sans-serif;
+  color: #fff;
+  font-size: 18px;
+}
+
+
+/* for select */
+
+.selectCont{
+  position: relative;
+  display: grid;
+  padding-top: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+#selectWrap{
+  position: relative;
+  display: grid;
+
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper select {
+  padding: 8px;
+  /* margin-right: 10rem; */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#redirect_log{
+  text-align: center;
+  padding-top: 10px;
+}
+
+#entry_cont{
+  justify-content: space-between;
+  margin: 0;
+}
+
+#my_entries{
+  position: relative;
+  list-style: none;
+  background: linear-gradient(to right, #5b7fed, #5484d0);
+  width: 210px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  right:1.5rem;
+}
+
+/* Logout */
+
+.Logout_Btn{
+  border: none;
+  background: none;
+  width: 100%;
+  color: #fff;
+}
+
+
+
+/* DropMenu */
+
+.DropMenu{
+  align-items: center;
+}
+
+/* style.css */
+
+
+
+
+@media screen and (max-width: 760px) {
+  /* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+}
+/* menu_nav */
+#nav_menu{
+  right: 0;
+}
+
+.userDashBoard{
+  display: block;
+  width: 100%;
+}
+.fixed-header {
+  width: 100%;
+  height: 20rem;
+  top: 2rem;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+#dash_board{
+  padding-left: 0;
+  padding: 10px;
+}
+.logo {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.submenu{
+  display: none;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: rgba(17, 19, 20, 0.1);
+  border: 1px solid #fff;
+  padding: 10px;
+  width: 150px;
+  text-align: right;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+#icon001{
+  position: relative;
+  padding: 5px 0 10px 0;
+  right: 10px;
+}
+#user_drp_dwn{
+  text-decoration: none;
+  color: none;
+}
+
+.menu.open .sub_li{
+  margin: 0;
+  padding: 0;
+}
+.menu.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.menu.open li:hover .submenu {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding-top: 10%;
+}
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.hamburger span {
+  background-color: #fff;
+  height: 3px;
+  width: 25px;
+  margin: 4px 0;
+  transition: 0.4s;
+  margin-right: 1rem;
+}
+
+.menu.open + .hamburger span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu.open + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu.open + .hamburger span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* for dropdown header */
+
+.nav.dropdown button {
+  position: absolute;
+  cursor: pointer;
+  background: linear-gradient(to right, #0c6256, #18828e);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border: none;
+  color: #fff;
+  padding: 5px;
+  top: 20px;
+  left: 0;
+}
+
+.dropdown-content {
+  position: absolute;
+  background: linear-gradient(to right, #712d0d, #85295d);
+  display: none;
+  min-width: 160px;
+  top: 45px;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(18, 17, 17, 0.2);
+  border-radius: 0 0 6px 6px;
+  margin: 0;
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+/* for dropdown header */
+
+#dash_visuals{
+  display: block;
+}
+
+#my_logo {
+  display: block;
+}
+
+
+.Logout_Btn{
+  text-align: end;
+
+}
+
+}
+
+
+@media screen and (max-width: 375px){
+  .CounterCont{
+    position: relative;
+    background-color: none;
+    background-color: none;
+    margin: 7rem 2rem 0 2rem;
+    font-family: 'News Cycle', sans-serif;
+    border-radius: 5px;
+  } 
+}
