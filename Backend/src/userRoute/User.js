@@ -12,7 +12,7 @@ userRouter.use(express.json());
 userRouter.post('/registerUser', userController.insertUser);
 
 // API for populated users
-userRouter.post('/addToPop', userController.insertPopulation);
+// userRouter.post('/addToPop', userController.insertPopulation);
 
 userRouter.post('/login', userController.LoginVerify);
 

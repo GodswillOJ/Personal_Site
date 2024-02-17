@@ -18,7 +18,7 @@ export const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post('https://population-counter.onrender.com/api/login', { username, password });
+      const response = await axios.post('https://personal-site-awu4.onrender.com.com/api/login', { username, password });
       setUsername('');
       setPassword('');
   
@@ -82,7 +82,7 @@ export const Register = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://population-counter.onrender.com/api/registerUser', { username, email, password });
+      await axios.post('https://personal-site-awu4.onrender.com/api/registerUser', { username, email, password });
       setUsername('');
       setEmail('');
       setPassword('');

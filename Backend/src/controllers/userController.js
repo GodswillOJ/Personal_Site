@@ -7,24 +7,6 @@ dotenv.config();
 
 const JWT_Phrase = process.env.JWT;
 
-export const insertPopulation = async (req, res) => {
-  try {
-    const { name, state, address, dateOfBirth, nin } = req.body;
-    console.log('Request received:', req.body);
-    if (!name || !state) {
-      return res.status(400).json({ error: 'Name and state are required' });
-    }
-
-    const newPopulation = new Population({ name, state, address, dateOfBirth, nin });
-    const savedPopulation = await newPopulation.save();
-
-    res.status(201).json(savedPopulation);
-  } catch (error) {
-    console.error('Error adding population:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
 export const insertUser = async (req, res) => {
   const { username, email, password } = req.body;
 

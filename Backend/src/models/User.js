@@ -1,7 +1,7 @@
 // models/User.js
 import mongoose from 'mongoose';
 
-const popSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
