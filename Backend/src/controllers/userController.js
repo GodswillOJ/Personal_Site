@@ -1,4 +1,4 @@
-import { Population, User } from '../models/User.js';
+import { Post, User } from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
