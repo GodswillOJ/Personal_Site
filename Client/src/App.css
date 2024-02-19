@@ -35,7 +35,7 @@ body {
 }
 
 body.dark-theme{
-  background: linear-gradient(to right, #161919, #43191d);
+  background: linear-gradient(to right, #161919, #3e3a3a);
 }
 body.dark-theme .Counter_Engine {
   color: white;
@@ -146,7 +146,7 @@ main{
   width: 100%;
   line-height: 10px;
   z-index: 999;
-  background: linear-gradient(to right, #156fdd, #16739e);
+  background: linear-gradient(to right, #5c1e85, #2f169e);
   box-shadow: 0px 10px 6px rgba(247, 247, 250, 0.1);
 
 }

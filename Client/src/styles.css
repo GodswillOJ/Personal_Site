@@ -71,7 +71,7 @@ html{
     transition: display 6.3s ease-in-out;
     left: 60%;
   }
-  
+
   .submenu {
     display: none;
     position: absolute;
@@ -163,6 +163,7 @@ html{
   }
 
   /* Courses enrolled */
+
   .course{
     color: #fff;
   }
@@ -199,16 +200,6 @@ html{
     border-radius: 10px;
     font-family: 'News Cycle', sans-serif;
   }
-
-
-  #site_img {
-    /* Update the background-image URL to reference the image correctly */
-    /* background-image: url('/personal_opacity.jpg'); */
-  }
-  
-  /* Update other background-image URLs similarly */
-  
-  
 
   #course_1{
     position: relative;
@@ -250,9 +241,7 @@ html{
     background-position: center;
     background-size:cover;
     background-repeat: no-repeat;
-    margin-top: 10%;
-    /* margin-bottom: 10%; */
-    height: 10rem;
+    height: 15rem;
     box-shadow: 4px 10px 6px rgba(0, 0, 0, 0.1);
     padding-left: 5%;
     padding-top: 5%;
@@ -377,9 +366,9 @@ html{
       }
 
           /* Courses enrolled */
-      .courses_info{
+      /* .courses_info{
         margin-bottom: 2rem;
-      }
+      } */
       
       .courses_heads{
         position: relative;
@@ -394,19 +383,10 @@ html{
       }
 
       /* courses_infor */
-      /* .courses_all{
-        position: relative;
-        display: block;
-        top: 1rem;
-        margin:0;
-        justify-content: center;
-        margin-bottom: 10em;
-      } */
+      
       #myCourse{
         position: relative;
-        display: block;
-        margin: 0 10% 20% 10%;
-        
+        display: block;        
       }
       .course_c2{
         height: 10rem;

@@ -61,6 +61,7 @@ body.dark-theme .RegCont .Title{
   width: 100%;
   background: none;
   bottom: 0;
+  margin-top: 20px;
 }
 #Footer_Dash div{
   display: flex;
@@ -210,14 +211,15 @@ body.dark-theme .userDashBoard{
 /* Custom styles for Swiper container */
 
 .swiper-container {
-  width: 50%;
-  height: 300px;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: none;
+  border-radius: 5px;
 }
 
 .swiper-pagination {
@@ -231,23 +233,34 @@ body.dark-theme .userDashBoard{
   display: block;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  position: absolute;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  z-index: 10;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+
+.swiper-container .swiper-button-prev:after, 
+.swiper-container .swiper-button-next:after {
+  content: '';
 }
 
 .swiper-button-prev {
+  top: 0;
   left: 10px;
+  color: #1b0f0f;
 }
 
 .swiper-button-next {
   right: 10px;
+}
+
+.arrow_slide{
+  position: relative;
+  margin-bottom: 14rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+.courses_cont{
+  background: linear-gradient(to right, #e7f1f6, #2a6278);
+  padding: 10%;
+  margin: 10%;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
 }
