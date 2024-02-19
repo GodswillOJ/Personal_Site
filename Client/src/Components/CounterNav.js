@@ -1,17 +1,18 @@
-// CounterNav.js
 import React, { useState } from 'react';
 import '../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faUser, faBell, faEnvelope, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faUser, faMagnifyingGlass, faEnvelope, faPalette } from '@fortawesome/free-solid-svg-icons';
 import { Link, NavLink } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const CounterNav = () => {
+const CounterNav = ({ isLoggedIn, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [lightTheme, toggleBackgroundColorOpen] = useState(false);
   const [darkTheme, toggleBackgroundColorClose] = useState(false);
+  const [cookies, setCookies] = useCookies(['access_token']);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,12 +29,10 @@ const CounterNav = () => {
     document.body.classList.toggle('dark-theme', darkTheme);
   };
 
-  const [cookies, setCookies] = useCookies(['access_token']);
-  const navigate = useNavigate();
-
   const logout = () => {
     setCookies('access_token', '');
-    window.localStorage.removeItem('userID');
+    window.localStorage.removeItem('isLoggedIn');
+    onLogout();
     navigate('/login');
   };
 
@@ -49,10 +48,9 @@ const CounterNav = () => {
             <FontAwesomeIcon icon={faPalette} />
           </li>
         </Link>
-        <Link to="/notifications">
+        <Link to="/search-user">
           <li>
-            <FontAwesomeIcon icon={faBell} />
-            <FontAwesomeIcon icon={faCaretDown} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
           </li>
         </Link>
         <Link to="/">
@@ -69,24 +67,26 @@ const CounterNav = () => {
             </Link>
             {isUserMenuOpen && (
               <ul className="submenu">
-                <NavLink to="/Dashboard">
-                  <li>Home</li>
+                <NavLink to="/dashboard">
+                  <li>Dashboard</li>
                 </NavLink>
-                {!cookies.access_token ? (
-                  <NavLink to="/login">
-                    <li>Login</li>
-                  </NavLink>
-                ) : (
+                {isLoggedIn ? (
                   <li onClick={logout}>Logout</li>
+                ) : (
+                  <>
+                    <NavLink to="/login">
+                      <li>Login</li>
+                    </NavLink>
+                    <NavLink to="/register">
+                      <li>Register</li>
+                    </NavLink>
+                  </>
                 )}
-                <NavLink to="/register">
-                  <li>Register</li>
-                </NavLink>
               </ul>
             )}
           </li>
         </div>
-        <Link to="/">
+        <Link to="/about">
           <li>About</li>
         </Link>
       </div>
@@ -98,6 +98,7 @@ const CounterNav = () => {
       </div>
     </div>
   );
+
 };
 
 export default CounterNav;

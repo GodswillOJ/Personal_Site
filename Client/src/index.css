@@ -55,6 +55,26 @@ body.dark-theme .RegCont .Title{
 }
 
 
+/* footer */
+#Footer_Dash{
+  position: relative;
+  width: 100%;
+  background: none;
+  bottom: 0;
+}
+#Footer_Dash div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Footer_Dash div a{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  padding: 10px;
+  list-style: none;
+  color: #177575;
+}
 
 
 /* userDashboard */
@@ -183,4 +203,40 @@ body.dark-theme .userDashBoard{
   border: 1px solid #a1a1a1;
   border-radius: 5px;
 }
+
+
+/* style.css */
+
+/* Custom styles for Swiper container */
+.courses_info {
+  position: relative;
+  width: 50%;
+  margin: 0 10% 0 10%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Custom styles for Swiper slides */
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Other styling properties as needed */
+}
+
+/* Custom styles for Swiper navigation buttons */
+
+.swiper-button-prev::after,
+.swiper-button-next::after{
+  content: ''; 
+}
+
+.swiper-button-next {
+  right: 30px;
+}
+
+.swiper-button-prev {
+  left: 30px;
+}
+
 

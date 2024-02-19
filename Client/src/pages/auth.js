@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {useCookies} from "react-cookie"
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 export const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -46,14 +48,12 @@ export const Login = ({ onLogin }) => {
 
   return (
     <div className="CounterCont">
-      <h2 className="Title">Population Counter</h2>
+      <h2 className="Title">Personal Website</h2>
       <form onSubmit={handleLogin} className="Counter_Engine" id="registerInput">
         <h2>Login</h2>
         <div>
           <label>Username:</label>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </div>
-        <div>
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
@@ -67,6 +67,16 @@ export const Login = ({ onLogin }) => {
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
+
+      <div id="Footer_Dash">
+          <div>
+          <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><li><FontAwesomeIcon icon={faLinkedin} /></li></Link>
+          <Link to="https://www.twitter.com/"><li><FontAwesomeIcon icon={faTwitter} /></li></Link>
+          <Link to="https://www.instagram.com/godswill_oj/"><li><FontAwesomeIcon icon={faInstagram} /></li></Link>
+          <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><li><FontAwesomeIcon icon={faWhatsapp} /></li></Link>
+          <Link to="https://wwww.facebook.com/"><li><FontAwesomeIcon icon={faFacebook} /></li></Link>
+          </div>
+      </div>
     </div>
   );
 };
@@ -114,7 +124,7 @@ const Form = ({ onSubmit, username, setUsername, email, setEmail, password, setP
   return (
     <div className="Register">
       <div className="CounterCont RegCont">
-      <h2 className="Title">Population Counter</h2>
+      <h2 className="Title">Personal Website</h2>
         <form className="Counter_Engine" id="registerInput" onSubmit={onSubmit}>
           <h2>{label}</h2>
           <div>
@@ -136,6 +146,15 @@ const Form = ({ onSubmit, username, setUsername, email, setEmail, password, setP
             </div>
           )}
         </form>
+        <div id="Footer_Dash">
+            `<div>
+            <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><li><FontAwesomeIcon icon={faLinkedin} /></li></Link>
+            <Link to="https://www.twitter.com/"><li><FontAwesomeIcon icon={faTwitter} /></li></Link>
+            <Link to="https://www.instagram.com/godswill_oj/"><li><FontAwesomeIcon icon={faInstagram} /></li></Link>
+            <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><li><FontAwesomeIcon icon={faWhatsapp} /></li></Link>
+            <Link to="https://wwww.facebook.com/"><li><FontAwesomeIcon icon={faFacebook} /></li></Link>
+            </div>
+        </div>`
       </div>
     </div>
   );

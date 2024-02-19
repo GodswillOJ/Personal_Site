@@ -141,11 +141,12 @@ main{
   display: flex;
   justify-content: space-between;
   /* border-bottom: 1px solid #c3c2c2; */
+  top: 0;
   align-items: center;
   width: 100%;
   line-height: 10px;
   z-index: 999;
-  background: linear-gradient(to right, #dd1568, #9e164f);
+  background: linear-gradient(to right, #156fdd, #16739e);
   box-shadow: 0px 10px 6px rgba(247, 247, 250, 0.1);
 
 }
@@ -231,9 +232,11 @@ main{
 
 .Counter_Engine{
   position: relative;
-  width: 100%;
+  margin: 10% 0 10%;
   height: 27rem;
-  padding: 15px;
+}
+.Counter_Engine div{
+  display: grid;
 }
 .Counter_Engine h1{
   position: relative;
@@ -253,8 +256,8 @@ main{
 }
 .Counter_Engine input{
   position: relative;
-  width: 100%;
-  padding: 5px;
+  margin-bottom: 8px;
+  padding: 10px;
   border: 1px solid #e8e8ea;
   box-shadow: 2px 4px 6px rgba(15, 16, 16, 0.1);
   border-radius: 8px;
