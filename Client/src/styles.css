@@ -250,7 +250,8 @@ html{
     background-position: center;
     background-size:cover;
     background-repeat: no-repeat;
-    top: 10%;
+    margin-top: 10%;
+    /* margin-bottom: 10%; */
     height: 10rem;
     box-shadow: 4px 10px 6px rgba(0, 0, 0, 0.1);
     padding-left: 5%;
@@ -393,14 +394,14 @@ html{
       }
 
       /* courses_infor */
-      .courses_all{
+      /* .courses_all{
         position: relative;
         display: block;
         top: 1rem;
         margin:0;
         justify-content: center;
         margin-bottom: 10em;
-      }
+      } */
       #myCourse{
         position: relative;
         display: block;

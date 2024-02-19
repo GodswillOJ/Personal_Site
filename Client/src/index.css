@@ -208,35 +208,46 @@ body.dark-theme .userDashBoard{
 /* style.css */
 
 /* Custom styles for Swiper container */
-.courses_info {
-  position: relative;
+
+.swiper-container {
   width: 50%;
-  margin: 0 10% 0 10%;
-  margin: 0 auto;
-  position: relative;
+  height: 300px;
 }
 
-/* Custom styles for Swiper slides */
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  /* Other styling properties as needed */
 }
 
-/* Custom styles for Swiper navigation buttons */
-
-.swiper-button-prev::after,
-.swiper-button-next::after{
-  content: ''; 
+.swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.swiper-wrapper{
+  position: relative;
+  display: block;
 }
 
+.swiper-button-prev,
 .swiper-button-next {
-  right: 30px;
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  z-index: 10;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 .swiper-button-prev {
-  left: 30px;
+  left: 10px;
 }
 
-
+.swiper-button-next {
+  right: 10px;
+}

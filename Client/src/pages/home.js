@@ -3,11 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { Swiper } from 'swiper';
-import SwiperCore, { Navigation, Pagination } from 'react'; // Import Swiper core and required modules
-
-// Install Swiper modules
-SwiperCore.use([Navigation, Pagination]);
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 
 const Home = ({ isLoggedIn }) => {
   // State variables for loading and error handling
@@ -33,10 +30,89 @@ const Home = ({ isLoggedIn }) => {
         setLoading(false);
       }
     };
-
+  
+    const initializeSwiper = () => {
+      let mySwiper; // Declare mySwiper variable outside of the try-catch block
+    
+      try {
+        mySwiper = new Swiper('.swiper-container', {
+          // Optional parameters
+          direction: 'horizontal',
+          loop: true,
+          autoplay: {
+            delay: 5000,
+          },
+      
+          // If we need pagination
+          pagination: {
+            el: '.swiper-pagination',
+          },
+      
+          breakpoints: {
+            780: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            1400: {
+              slidesPerView: 2,
+              spaceBetween: -6,
+            }
+          },
+      
+          // Navigation arrows
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      } catch (error) {
+        console.error('Error initializing Swiper:', error);
+      }
+    
+      if (mySwiper) {
+        // Handle navigation button clicks
+        const nextButton = document.querySelector('.swiper-button-next');
+        const prevButton = document.querySelector('.swiper-button-prev');
+      
+        nextButton.addEventListener('click', () => {
+          // Check if the next slide is the last slide
+          if (mySwiper.isEnd) {
+            // Stop autoplay when reaching the last slide
+            if (mySwiper.autoplay) { // Check if autoplay property exists
+              mySwiper.autoplay.stop();
+            }
+          } else {
+            mySwiper.slideNext();
+          }
+        });
+      
+        prevButton.addEventListener('click', () => {
+          // Check if the previous slide is the first slide
+          if (mySwiper.isBeginning) {
+            // Start autoplay if going back from the first slide
+            if (mySwiper.autoplay) { // Check if autoplay property exists
+              mySwiper.autoplay.start();
+            }
+          } else {
+            mySwiper.slidePrev();
+          }
+        });
+      }
+    };
+    
+    
+    
+  
+    if (document.readyState === 'complete') {
+      initializeSwiper();
+    } else {
+      window.addEventListener('load', initializeSwiper);
+    }
+  
     fetchData();
   }, [isLoggedIn]);
-
+  
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -59,7 +135,7 @@ const Home = ({ isLoggedIn }) => {
           </div>
         </div>
         <section className="courses_">
-            <div className="courses_heads">
+            
             <div className="courses_heads">
               <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/shoper.jpg)` }}>
                 <h1>Online Learning</h1>
@@ -78,7 +154,7 @@ const Home = ({ isLoggedIn }) => {
                 <Link to=""><button className="button-default">Contact Us</button></Link>
               </div>
             </div>
-            </div>
+            
 
             <div className="cr_feat">
               <div className="feat">
@@ -89,105 +165,103 @@ const Home = ({ isLoggedIn }) => {
               </div>
             </div>
 
-            <div className="courses_info">
-              <Swiper className='Swiper'
-                spaceBetween={24}
-                loop={true}
-                
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={{
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }}
-                breakpoints={{
-                  1200: {
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                  }
-                }}
-              >
-                {/* Your course items here */}
-                <SwiperSlide>
-                    <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
-                    
-                    </div>
-                    <div className="course_text">
-                        <p id="C_wk">18 weeks</p>
-                        <p id="course_title">Data Science</p>
-                        <p className="course_amnt">300,000</p>
-                        <Link to=''><p>See More</p></Link>
-                    </div>
-                </SwiperSlide>
+           
 
-                <SwiperSlide>
-                    <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+            <div className="courses_info swiper-container">
+              <div className="courses_all swiper-wrapper">
+
+                <div className="swiper-slide">
+                  <div id="myCourse">
+                  <div class="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+                      
+                      </div>
+                      <div class="course_text">
+                          <p id="C_wk">18 weeks</p>
+                          <p id="course_title">Data Science</p>
+                          <p class="course_amnt">300,000</p>
+                          <Link to=""><p>See More</p></Link>
+                      </div>
+                  </div>
+              </div>
+
+              <div className="swiper-slide">
+                  <div id="myCourse">
+                    <div class="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
                     
                     </div>
-                    <div className="course_text">
+                    <div class="course_text">
                         <p id="C_wk">22 weeks</p>
                         <p id="course_title">Web Development</p>
-                        <p className="course_amnt">250,000</p>
-                        <Link to=''><p>See More</p></Link>
+                        <p class="course_amnt">250,000</p>
+                        <Link to=""><p>See More</p></Link>
                     </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="course_c2" id="course_02" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
-                        
-                    </div>
-                    <div className="course_text">
-                        <p id="C_wk">12 weeks</p>
-                        <p id="course_title">Artificial Intelligence</p>
-                        <p className="course_amnt">250,000</p>
-                        <Link to=''><p>See More</p></Link>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="course_c2" id="course_03" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
-                        
-                    </div>
-                    <div className="course_text">
-                        <p id="C_wk">11 weeks</p>
-                        <p id="course_title">Machine Learning</p>
-                        <p className="course_amnt">200,000</p>
-                        <Link to=''><p>See More</p></Link>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
-                    
-                    </div>
-                    <div className="course_text">
-                        <p id="C_wk">16 weeks</p>
-                        <p id="course_title">Graphics Design</p>
-                        <p className="course_amnt">150,000</p>
-                        <Link to=''><p>See More</p></Link>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
-
-                    </div>
-                    <div className="course_text">
-                        <p id="C_wk">12 weeks</p>
-                        <p id="course_title">UI/UX</p>
-                        <p className="course_amnt">100,000</p>
-                        <Link to=''><p>See More</p></Link>
-                    </div>
-                </SwiperSlide>
-              </Swiper>
-              <div className="swiper-button-next">
-                  {/* <FontAwesomeIcon icon={faChevronRight} /> */}
+                  </div>
                 </div>
-                <div className="swiper-button-prev">
-                  {/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+
+                <div className="swiper-slide">
+                  <div id="myCourse">
+                      <div class="course_c2" id="course_02" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+                          
+                      </div>
+                      <div class="course_text">
+                          <p id="C_wk">12 weeks</p>
+                          <p id="course_title">Artificial Intelligence</p>
+                          <p class="course_amnt">250,000</p>
+                          <Link to=""><p>See More</p></Link>
+                      </div>
+                  </div>
                 </div>
+
+                <div className="swiper-slide">
+                    <div id="myCourse">
+                        <div class="course_c2" id="course_03" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+                            
+                        </div>
+                        <div class="course_text">
+                            <p id="C_wk">11 weeks</p>
+                            <p id="course_title">Machine Learning</p>
+                            <p class="course_amnt">200,000</p>
+                            <Link to=""><p>See More</p></Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="swiper-slide">
+                  <div id="myCourse">
+                      <div class="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+                      
+                      </div>
+                      <div class="course_text">
+                          <p id="C_wk">16 weeks</p>
+                          <p id="course_title">Graphics Design</p>
+                          <p class="course_amnt">150,000</p>
+                          <Link to=""><p>See More</p></Link>
+                      </div>
+                  </div>
+                </div>
+
+                <div className="swiper-slide">
+                  <div id="myCourse">
+                      <div class="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)`}}>
+
+                      </div>
+                      <div class="course_text">
+                          <p id="C_wk">12 weeks</p>
+                          <p id="course_title">UI/UX</p>
+                          <p class="course_amnt">100,000</p>
+                          <Link to=""><p>See More</p></Link>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="swiper-pagination"></div>
+
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
             </div>
+
+ 
         </section>
       </div>
         <div id="Footer_Dash">
