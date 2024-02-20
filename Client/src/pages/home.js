@@ -8,7 +8,6 @@ import Swiper from 'swiper';
 import 'swiper/swiper-bundle.css';
 
 const Home = ({ isLoggedIn }) => {
-  // State variables for loading and error handling
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,24 +30,18 @@ const Home = ({ isLoggedIn }) => {
         setLoading(false);
       }
     };
-  
-    const initializeSwiper = () => {
-      let mySwiper; // Declare mySwiper variable outside of the try-catch block
     
+    const initializeSwiper = () => {
       try {
-        mySwiper = new Swiper('.swiper-container', {
-          // Optional parameters
+        const mySwiper = new Swiper('.swiper-container', {
           direction: 'horizontal',
           loop: true,
           autoplay: {
             delay: 5000,
           },
-      
-          // If we need pagination
           pagination: {
             el: '.swiper-pagination',
           },
-      
           breakpoints: {
             780: {
               slidesPerView: 1,
@@ -59,61 +52,44 @@ const Home = ({ isLoggedIn }) => {
               spaceBetween: -6,
             }
           },
-      
-          // Navigation arrows
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
         });
-      } catch (error) {
-        console.error('Error initializing Swiper:', error);
-      }
-    
-      if (mySwiper) {
-        // Handle navigation button clicks
+
         const nextButton = document.querySelector('.swiper-button-next');
         const prevButton = document.querySelector('.swiper-button-prev');
-      
+
         nextButton.addEventListener('click', () => {
-          // Check if the next slide is the last slide
-          if (mySwiper.isEnd) {
-            // Stop autoplay when reaching the last slide
-            if (mySwiper.autoplay) { // Check if autoplay property exists
-              mySwiper.autoplay.stop();
-            }
+          if (mySwiper && mySwiper.isEnd) {
+            mySwiper.autoplay.stop();
           } else {
             mySwiper.slideNext();
           }
         });
-      
+
         prevButton.addEventListener('click', () => {
-          // Check if the previous slide is the first slide
-          if (mySwiper.isBeginning) {
-            // Start autoplay if going back from the first slide
-            if (mySwiper.autoplay) { // Check if autoplay property exists
-              mySwiper.autoplay.start();
-            }
+          if (mySwiper && mySwiper.isBeginning) {
+            mySwiper.autoplay.start();
           } else {
             mySwiper.slidePrev();
           }
         });
+      } catch (error) {
+        console.error('Error initializing Swiper:', error);
       }
     };
-    
-    
-    
-  
+
     if (document.readyState === 'complete') {
       initializeSwiper();
     } else {
       window.addEventListener('load', initializeSwiper);
     }
-  
+
     fetchData();
   }, [isLoggedIn]);
-  
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
