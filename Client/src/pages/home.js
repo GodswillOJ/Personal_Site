@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import Swiper from 'swiper';
+// import Swiper from 'swiper';
+// import 'swiper/swiper-bundle.css';
+import SwiperCore, { Pagination, Navigation } from 'swiper';
 import 'swiper/swiper-bundle.css';
+
+// Install Swiper modules
+SwiperCore.use([Pagination, Navigation]);
 
 const Home = ({ isLoggedIn }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,65 +36,26 @@ const Home = ({ isLoggedIn }) => {
         setLoading(false);
       }
     };
-    
-    const initializeSwiper = () => {
-      try {
-        const mySwiper = new Swiper('.swiper-container', {
-          direction: 'horizontal',
-          loop: true,
-          autoplay: {
-            delay: 5000,
-          },
-          pagination: {
-            el: '.swiper-pagination',
-          },
-          breakpoints: {
-            780: {
-              slidesPerView: 1,
-              spaceBetween: 0,
-            },
-            1400: {
-              slidesPerView: 2,
-              spaceBetween: -6,
-            }
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
-
-        const nextButton = document.querySelector('.swiper-button-next');
-        const prevButton = document.querySelector('.swiper-button-prev');
-
-        nextButton.addEventListener('click', () => {
-          if (mySwiper && mySwiper.isEnd) {
-            mySwiper.autoplay.stop();
-          } else {
-            mySwiper.slideNext();
-          }
-        });
-
-        prevButton.addEventListener('click', () => {
-          if (mySwiper && mySwiper.isBeginning) {
-            mySwiper.autoplay.start();
-          } else {
-            mySwiper.slidePrev();
-          }
-        });
-      } catch (error) {
-        console.error('Error initializing Swiper:', error);
-      }
-    };
-
-    if (document.readyState === 'complete') {
-      initializeSwiper();
-    } else {
-      window.addEventListener('load', initializeSwiper);
-    }
-
     fetchData();
+
+    const swiper = new SwiperCore('.swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
   }, [isLoggedIn]);
+
+
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -112,37 +79,33 @@ const Home = ({ isLoggedIn }) => {
           </div>
         </div>
         <section className="courses_">
-            
-            <div className="courses_heads">
-              <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/shoper.jpg)` }}>
-                <h1>Online Learning</h1>
-                <p>Get an instructor online to meet your expectations</p>
-                <Link to=""><button className="button-default">Our Offers</button></Link>
-              </div>
+          <div className="courses_heads">
+                <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/shoper.jpg)` }}>
+                  <h1>Online Learning</h1>
+                  <p>Get an instructor online to meet your expectations</p>
+                  <Link to=""><button className="button-default">Our Offers</button></Link>
+                </div>
 
-              <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)` }}>
-                <h1>On site training</h1>
-                <p>Get an enrolled into any of our courses and get started</p>
-                <Link to=""><button className="button-default">See courses</button></Link>
-              </div>
-              <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/presentation.jpg)` }}>
-                <h1>Contact us for your dream websites</h1>
-                <p>Get an enrolled into any of our courses and get started</p>
-                <Link to=""><button className="button-default">Contact Us</button></Link>
-              </div>
-            </div>
-            
-
-            <div className="cr_feat">
+                <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/oneOnOne.jpg)` }}>
+                  <h1>On site training</h1>
+                  <p>Get an enrolled into any of our courses and get started</p>
+                  <Link to=""><button className="button-default">See courses</button></Link>
+                </div>
+                <div className="course_c1" id="course_1" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/presentation.jpg)` }}>
+                  <h1>Contact us for your dream websites</h1>
+                  <p>Get an enrolled into any of our courses and get started</p>
+                  <Link to=""><button className="button-default">Contact Us</button></Link>
+                </div>
+          </div>
+          <div className="cr_feat">
               <div className="feat">
                 <Link to=""><li className="feat">Featured</li></Link>
                 <Link to=""><li className="feat">Web Development</li></Link>
                 <Link to=""><li className="feat">Data Science</li></Link>
                 <Link to=""><li className="feat">Artificial Intelligence</li></Link>
               </div>
-            </div>
-
-           <div className="courses_cont">
+          </div>
+          <div className="courses_cont">
               <div className="courses_info swiper-container">
                   <div className="courses_all swiper-wrapper">
 
@@ -242,18 +205,17 @@ const Home = ({ isLoggedIn }) => {
                 </div>
 
            </div>
- 
         </section>
       </div>
-        <div id="Footer_Dash">
-          <div>
-            <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><li><FontAwesomeIcon icon={faLinkedin} /></li></Link>
-            <Link to="https://www.twitter.com/"><li><FontAwesomeIcon icon={faTwitter} /></li></Link>
-            <Link to="https://www.instagram.com/godswill_oj/"><li><FontAwesomeIcon icon={faInstagram} /></li></Link>
-            <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><li><FontAwesomeIcon icon={faWhatsapp} /></li></Link>
-            <Link to="https://wwww.facebook.com/"><li><FontAwesomeIcon icon={faFacebook} /></li></Link>
-          </div>
+      <div id="Footer_Dash">
+        <div>
+          <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><FontAwesomeIcon icon={faLinkedin} /></Link>
+          <Link to="https://www.twitter.com/"><FontAwesomeIcon icon={faTwitter} /></Link>
+          <Link to="https://www.instagram.com/godswill_oj/"><FontAwesomeIcon icon={faInstagram} /></Link>
+          <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+          <Link to="https://wwww.facebook.com/"><FontAwesomeIcon icon={faFacebook} /></Link>
         </div>
+      </div>
     </div>
   );
 };
