@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-// import Swiper from 'swiper';
-// import 'swiper/swiper-bundle.css';
-import SwiperCore, { Pagination, Navigation } from 'swiper';
-import 'swiper/swiper-bundle.css';
+import {Swiper, SwiperSlide} from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-// Install Swiper modules
-SwiperCore.use([Pagination, Navigation]);
+
+// import required modules
+import { Pagination, Navigation } from 'swiper/modules';
 
 const Home = ({ isLoggedIn }) => {
   const [loading, setLoading] = useState(true);
@@ -37,20 +38,6 @@ const Home = ({ isLoggedIn }) => {
       }
     };
     fetchData();
-
-    const swiper = new SwiperCore('.swiper-container', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
 
   }, [isLoggedIn]);
 
@@ -108,99 +95,100 @@ const Home = ({ isLoggedIn }) => {
           <div className="courses_cont">
               <div className="courses_info swiper-container">
                   <div className="courses_all swiper-wrapper">
+                  <>
+                    <Swiper
+                          pagination={{
+                            type: 'progressbar',
+                          }}
+                          navigation={true}
+                          modules={[Pagination, Navigation]}
+                          className="mySwiper"
+                        >
+                            <SwiperSlide>
+                              <div id="myCourse">
+                              <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/DataAnaly.jpg)`}}>
+                                  
+                                  </div>
+                                  <div className="course_text">
+                                      <p id="C_wk">18 weeks</p>
+                                      <p id="course_title">Data Science</p>
+                                      <p className="course_amnt">300,000</p>
+                                      <Link to=""><p>See More</p></Link>
+                                  </div>
+                              </div>
+                          </SwiperSlide>
 
-                    <div className="swiper-slide">
-                      <div id="myCourse">
-                      <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/DataAnaly.jpg)`}}>
-                          
-                          </div>
-                          <div className="course_text">
-                              <p id="C_wk">18 weeks</p>
-                              <p id="course_title">Data Science</p>
-                              <p className="course_amnt">300,000</p>
-                              <Link to=""><p>See More</p></Link>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div className="swiper-slide">
-                      <div id="myCourse">
-                        <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/web.jpg)`}}>
-                        
-                        </div>
-                        <div className="course_text">
-                            <p id="C_wk">22 weeks</p>
-                            <p id="course_title">Web Development</p>
-                            <p className="course_amnt">250,000</p>
-                            <Link to=""><p>See More</p></Link>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="swiper-slide">
-                      <div id="myCourse">
-                          <div className="course_c2" id="course_02" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/AI.jpg)`}}>
-                              
-                          </div>
-                          <div className="course_text">
-                              <p id="C_wk">12 weeks</p>
-                              <p id="course_title">Artificial Intelligence</p>
-                              <p className="course_amnt">250,000</p>
-                              <Link to=""><p>See More</p></Link>
-                          </div>
-                      </div>
-                    </div>
-
-                    <div className="swiper-slide">
-                        <div id="myCourse">
-                            <div className="course_c2" id="course_03" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/machine.jpg)`}}>
+                          <SwiperSlide>
+                              <div id="myCourse">
+                                <div className="course_c2" id="course_01" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/web.jpg)`}}>
                                 
-                            </div>
-                            <div className="course_text">
-                                <p id="C_wk">11 weeks</p>
-                                <p id="course_title">Machine Learning</p>
-                                <p className="course_amnt">200,000</p>
-                                <Link to=""><p>See More</p></Link>
-                            </div>
-                        </div>
-                    </div>
+                                </div>
+                                <div className="course_text">
+                                    <p id="C_wk">22 weeks</p>
+                                    <p id="course_title">Web Development</p>
+                                    <p className="course_amnt">250,000</p>
+                                    <Link to=""><p>See More</p></Link>
+                                </div>
+                              </div>
+                            </SwiperSlide>
 
-                    <div className="swiper-slide">
-                      <div id="myCourse">
-                          <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/UIUX.jpg)`}}>
-                          
-                          </div>
-                          <div className="course_text">
-                              <p id="C_wk">16 weeks</p>
-                              <p id="course_title">Graphics Design</p>
-                              <p className="course_amnt">150,000</p>
-                              <Link to=""><p>See More</p></Link>
-                          </div>
-                      </div>
-                    </div>
+                            <SwiperSlide>
+                              <div id="myCourse">
+                                  <div className="course_c2" id="course_02" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/AI.jpg)`}}>
+                                      
+                                  </div>
+                                  <div className="course_text">
+                                      <p id="C_wk">12 weeks</p>
+                                      <p id="course_title">Artificial Intelligence</p>
+                                      <p className="course_amnt">250,000</p>
+                                      <Link to=""><p>See More</p></Link>
+                                  </div>
+                              </div>
+                            </SwiperSlide>
 
-                    <div className="swiper-slide">
-                      <div id="myCourse">
-                          <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/Graphics.jpg)`}}>
+                            <SwiperSlide>
+                                <div id="myCourse">
+                                    <div className="course_c2" id="course_03" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/machine.jpg)`}}>
+                                        
+                                    </div>
+                                    <div className="course_text">
+                                        <p id="C_wk">11 weeks</p>
+                                        <p id="course_title">Machine Learning</p>
+                                        <p className="course_amnt">200,000</p>
+                                        <Link to=""><p>See More</p></Link>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
 
-                          </div>
-                          <div className="course_text">
-                              <p id="C_wk">12 weeks</p>
-                              <p id="course_title">UI/UX</p>
-                              <p className="course_amnt">100,000</p>
-                              <Link to=""><p>See More</p></Link>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
+                            <SwiperSlide>
+                              <div id="myCourse">
+                                  <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/UIUX.jpg)`}}>
+                                  
+                                  </div>
+                                  <div className="course_text">
+                                      <p id="C_wk">16 weeks</p>
+                                      <p id="course_title">Graphics Design</p>
+                                      <p className="course_amnt">150,000</p>
+                                      <Link to=""><p>See More</p></Link>
+                                  </div>
+                              </div>
+                            </SwiperSlide>
+                            
+                            <SwiperSlide>
+                              <div id="myCourse">
+                                  <div className="course_c2" id="course_04" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/Graphics.jpg)`}}>
 
-                  <div className="swiper-pagination"></div>
-
-                  <div className="swiper-button-prev">
-                  <FontAwesomeIcon icon={faChevronLeft} className="arrow_slide" />
-                  </div>
-                  <div className="swiper-button-next">
-                  <FontAwesomeIcon icon={faChevronRight} className="arrow_slide" />
+                                  </div>
+                                  <div className="course_text">
+                                      <p id="C_wk">12 weeks</p>
+                                      <p id="course_title">UI/UX</p>
+                                      <p className="course_amnt">100,000</p>
+                                      <Link to=""><p>See More</p></Link>
+                                  </div>
+                              </div>
+                            </SwiperSlide>
+                        </Swiper>
+                       </>
                   </div>
                 </div>
 
