@@ -15,6 +15,12 @@ export const insertUser = async (req, res) => {
     return res.status(400).json({ error: 'Username, email, and password are required' });
   }
 
+  const user = await User.findOne({ username });
+
+  if (user) {
+    return res.status(400).json({ error: 'User already exist in site' });
+  }
+
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
