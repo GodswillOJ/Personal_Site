@@ -52,35 +52,14 @@ export const LoginVerify = async (req, res) => {
     // Generate JWT token
     if (user.is_admin === 0) {
       const token = jwt.sign({ userId: user._id }, JWT_Phrase, { expiresIn: '1d' }); // set to 1 day
-
+      
       res.json({ access_token: token, userID: user._id });
     } else {
-      res.status(500).json({ error: 'Login Error. No Such User' });
+      // Change the status to 401 for consistency with the frontend
+      res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-export const LoadDashboard = async (req, res) => {
-  const userId = req.userId; // Use req.user.userId instead of req.params._id
-
-  try {
-    console.log('Fetching user data for userId:', userId);
-
-    const userData = await User.findById({_id: userId}); // Fetch user data using userId
-    console.log(userData);
-
-    if (!userData) {
-      console.log('User not found');
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    console.log('User data found:', userData);
-    res.json({ user: userData });
-  } catch (error) {
-    console.error('Error fetching user data:', error);
+    console.error('Login error:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
@@ -91,7 +70,7 @@ export const Home = async (req, res) => {
     if (req.user) {
       // Fetch user data here
       const userData = await User.findById(req.user.userId); // Assuming you have a User model
-      res.json({ message: 'Welcome home!', user: userData });
+      res.json({ message: 'Welcome home!', userData });
     } else {
       res.json({ message: 'Welcome home!' }); // For unauthorized users
     }
@@ -100,3 +79,16 @@ export const Home = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// Controller function to fetch user data for the dashboard
+export const fetchUserData = async (req, res) => {
+  try {
+    // Fetch user data
+    const userData = await User.findById(req.user.userId); // Assuming you have a User model
+    res.json(userData);
+  } catch (error) {
+    console.error('Error fetching user data for dashboard:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+

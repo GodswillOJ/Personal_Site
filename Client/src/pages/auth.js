@@ -20,14 +20,15 @@ export const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post('https://personal-site-awu4.onrender.com.com/api/login', { username, password });
+      const response = await axios.post('https://personal-site-awu4.onrender.com/api/login', { username, password });
       setUsername('');
       setPassword('');
   
       console.log('Access Token:', response.data.access_token);
   
-      setCookies('access_token', response.data.access_token, { path: '/' });
-      window.localStorage.setItem('userID', response.data.userID);
+      // Set the access token in localStorage instead of cookies
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('userID', response.data.userID); // Store user ID in localStorage as well
       onLogin();
   
       navigate('/dashboard');
@@ -45,15 +46,18 @@ export const Login = ({ onLogin }) => {
   };
   
   
+  
 
   return (
     <div className="CounterCont">
-      <h2 className="Title">Personal Website</h2>
+      <h2 className="Title">Personal Site</h2>
       <form onSubmit={handleLogin} className="Counter_Engine" id="registerInput">
         <h2>Login</h2>
         <div>
           <label>Username:</label>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div>
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
@@ -67,7 +71,6 @@ export const Login = ({ onLogin }) => {
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
-
       <div id="Footer_Dash">
           <div>
           <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><li><FontAwesomeIcon icon={faLinkedin} /></li></Link>

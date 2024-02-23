@@ -271,3 +271,17 @@ body.dark-theme .userDashBoard{
   border-radius: 10px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
+/* About */
+.About_page #my_about_Info{
+  position: relative;
+  margin: 10%;
+  justify-content: center;
+}
+.About_page #my_about_Info h1{
+  font-size: 32px;
+}
+.About_page #my_about_Info p{
+  font-size: 18px;
+}
