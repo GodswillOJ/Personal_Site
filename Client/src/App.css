@@ -64,7 +64,7 @@ header{
   border-right: 1px solid #c3c2c2;
   height: 200rem;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to right, #7f3f21, #782a30);
+  background: linear-gradient(to right, #54498e, #2a3678);
   z-index: 99;
   font-family: 'Lora', serif;
   overflow-y: hidden;
@@ -494,10 +494,10 @@ main{
 
 .dropdown-content {
   position: absolute;
-  background: linear-gradient(to right, #712d0d, #85295d);
+  background: linear-gradient(to right, #54498e, #2a3678);
   display: none;
   min-width: 160px;
-  top: 45px;
+  top: 60px;
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(18, 17, 17, 0.2);
   border-radius: 0 0 6px 6px;

@@ -112,7 +112,7 @@ const Dashboard = () => {
           <div className="userDashBoard">
               <header className={`nav dropdown fixed-header ${isDropdownOpen ? 'open' : ''}`} id="menu">
                 <button id="sub_nav_but" onClick={toggleDropdown}>
-                  <div id="my_logo"><i className="fa-solid fa-house"></i> Gotech_dashboard</div>
+                  <div id="my_logo">Gotech_dashboard</div>
                   <FontAwesomeIcon icon={faCaretDown} id="icon001" />
                 </button>
                 <ul className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`} id="myDropdown">

@@ -285,3 +285,15 @@ body.dark-theme .userDashBoard{
 .About_page #my_about_Info p{
   font-size: 18px;
 }
+
+/* nav */
+
+#sub_nav_but{
+  display: flex;
+  justify-content: space-between;
+}
+#sub_nav_but{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
