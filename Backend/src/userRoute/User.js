@@ -9,6 +9,7 @@ userRouter.use(express.json());
 
 userRouter.post('/registerUser', userController.insertUser);
 userRouter.post('/login', userController.LoginVerify);
+userRouter.get('/forget-password', userController.getForgetPassword);
 userRouter.post('/forget-password', userController.forgetPassword);
 userRouter.post('/reset-password', userController.resetPassword);
 

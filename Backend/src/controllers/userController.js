@@ -149,6 +149,16 @@ const JWT_SECRET = process.env.JWT_SECRET;
 // other controller functions...
 
 // Forget Password
+
+export const getForgetPassword = async (req, res) => {
+  try {
+    res.json({message : 'Reset password'});
+  } catch (error) {
+    console.error('Error loading forget password page:', error);
+    res.status(500).json({ error: 'Forget Password Internal Server Error' });
+  }
+}
+
 export const forgetPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -199,7 +209,7 @@ export const sendResetPasswordMail = async(username, email, token)=> {
           from: emailUser,
           to: email,
           subject: 'For Reset mail',
-          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/reset-password/?token='+ token +'">here</a> your password</p>'
+          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-static.onrender.com/api/reset-password/?token='+ token +'">here</a> your password</p>'
       }
       transporter.sendMail(mailOptions, function(error, info){
           if (error) {
