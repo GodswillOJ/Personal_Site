@@ -65,7 +65,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/About" element={<About isLoggedIn={isLoggedIn} />} />
-          <Route path="/Forget-password" element={<ForgetPassword />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
           <Route exact path="/reset-password/:token" render={(props) => <ResetPassword token={props.match.params.token} />} />    
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />

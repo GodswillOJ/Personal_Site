@@ -64,7 +64,7 @@ export const Login = ({ onLogin }) => {
         </button>
         <p>Already Have an Account
           <br></br>
-          <Link to='/Forget-password'>Forget Password</Link>
+          <Link to='/forget-password'>Forget Password</Link>
         </p>
         <div id="redirect_log">
           <Link to="/register">Register</Link>
