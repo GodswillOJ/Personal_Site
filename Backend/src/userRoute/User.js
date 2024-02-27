@@ -9,6 +9,8 @@ userRouter.use(express.json());
 
 userRouter.post('/registerUser', userController.insertUser);
 userRouter.post('/login', userController.LoginVerify);
+userRouter.post('/forget-password', userController.forgetPassword);
+userRouter.post('/reset-password', userController.resetPassword);
 
 userRouter.get('/dashboard', isAuthenticated, userController.fetchUserData); // Route to fetch user data for the dashboard
 

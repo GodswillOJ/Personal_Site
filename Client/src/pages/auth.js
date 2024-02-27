@@ -45,8 +45,6 @@ export const Login = ({ onLogin }) => {
     }
   };
   
-  
-  
 
   return (
     <div className="CounterCont">
@@ -64,7 +62,10 @@ export const Login = ({ onLogin }) => {
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-
+        <p>Already Have an Account
+          <br></br>
+          <Link to='/Forget-password'>Forget Password</Link>
+        </p>
         <div id="redirect_log">
           <Link to="/register">Register</Link>
         </div>

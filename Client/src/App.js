@@ -6,6 +6,8 @@ import { Register, Login } from './pages/auth';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/home';
 import About from './pages/About';
+import ResetPassword from './Components/ResetPassword';
+import ForgetPassword from './Components/Forget-password';
 import axios from 'axios';
 
 const PrivateRoute = ({ element, authenticated, ...props }) => {
@@ -63,6 +65,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/About" element={<About isLoggedIn={isLoggedIn} />} />
+          <Route path="/Forget-password" element={<ForgetPassword />} />
+          <Route exact path="/reset-password/:token" render={(props) => <ResetPassword token={props.match.params.token} />} />    
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />

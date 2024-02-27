@@ -359,10 +359,21 @@ main{
 /* style.css */
 
 
+/* d3js */
+#D3_Chart{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
 
 
 @media screen and (max-width: 760px) {
   /* Navbar.css */
+
+  body{
+    position: relative;
+    overflow-x: hidden;
+  }
 
 .navbar {
   display: flex;
@@ -516,6 +527,11 @@ main{
 }
 
 #my_logo {
+  display: block;
+}
+
+#D3_Chart{
+  position: relative;
   display: block;
 }
 

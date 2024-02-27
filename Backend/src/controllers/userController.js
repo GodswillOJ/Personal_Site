@@ -2,6 +2,7 @@ import { Post, User } from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import nodemailer from 'nodemailer'
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ export const insertUser = async (req, res) => {
   const user = await User.findOne({ username });
 
   if (user) {
-    return res.status(400).json({ error: 'User already exist in site' });
+    return res.status(400).json({ error: 'User already exists on the site' });
   }
 
   // Hash the password
@@ -28,12 +29,20 @@ export const insertUser = async (req, res) => {
 
   try {
     const savedUser = await newUser.save();
-    res.json(savedUser);
+    if (savedUser) {
+      // Call sendVerifyMail function with user details
+      sendVerifyMail(savedUser.username, savedUser.email, savedUser._id);
+      console.log(savedUser);
+      res.json(savedUser);
+    } else {
+      res.status(500).json({ error: 'Error in verifying user' });
+    }
   } catch (error) {
     console.error('Error adding user:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 export const LoginVerify = async (req, res) => {
   const { username, password } = req.body;
@@ -98,3 +107,138 @@ export const fetchUserData = async (req, res) => {
   }
 };
 
+// For verify mail
+const port = process.env.PORT
+const emailUser = process.env.EmailUser
+const emailPassword = process.env.EmailPassword
+
+export const sendVerifyMail = async(username, email, userId)=> {
+  try {
+      const transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          requireTLS: true,
+          auth: {
+              user: emailUser,
+              pass: emailPassword
+          }
+      });
+
+      const mailOptions = {
+          from: emailUser,
+          to: email,
+          subject: 'For Verification mail',
+          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/user/verify?id='+ userId +'">Verify</a> your mail</p>'
+      }
+      transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+              console.log(error)
+          } else {
+              console.log('Email has been sent:-', info.response)
+          }
+      })
+  } catch (error) {
+      console.log(error.message)
+  }
+}
+
+//Reset Password 
+const JWT_SECRET = process.env.JWT_SECRET;
+
+// other controller functions...
+
+// Forget Password
+export const forgetPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Generate a unique token using JWT
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+
+    // Save the token to the user document
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
+
+    await user.save();
+
+    // Send reset password email
+    sendResetPasswordMail(user.username, user.email, token);
+
+    res.status(200).json({ message: 'Password reset email sent successfully' });
+  } catch (error) {
+    console.error('Error in forget password:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const sendResetPasswordMail = async(username, email, token)=> {
+  try {
+
+      const transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          requireTLS: true,
+          auth: {
+              user: emailUser,
+              pass: emailPassword
+          }
+      });
+
+      const mailOptions = {
+          from: emailUser,
+          to: email,
+          subject: 'For Reset mail',
+          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/reset-password/${token}">here</a> your password</p>'
+      }
+      transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+              console.log(error)
+          } else {
+              console.log('Email has been sent:-', info.response)
+          }
+      })
+  } catch (error) {
+      console.log(error.message)
+  }
+}
+
+// Reset Password
+export const resetPassword = async (req, res) => {
+  const { access_token, newPassword } = req.body;
+
+  try {
+    // Find user by reset token
+    const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
+
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid or expired token' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password and clear reset token
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    // Send password reset confirmation email
+    sendPasswordResetConfirmation(user.username, user.email);
+
+    res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('Error in reset password:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

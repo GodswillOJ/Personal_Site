@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, Navigate } from 'react-router-dom'; // Import Navigate for redirection
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
+import {D3Chart, AreaPlotChart} from '../Components/D3Chart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 
 const Dashboard = () => {
-  const [dashboardData, setDashboardData] = useState({});
+  // const [dashboardData, setDashboardData] = useState({});
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Track authentication state
@@ -27,7 +28,7 @@ const Dashboard = () => {
             }
           });
           setUserData(response.data);
-          setDashboardData(response.data);
+          // setDashboardData(response.data);
         } else {
           setIsAuthenticated(false);
         }
@@ -40,54 +41,6 @@ const Dashboard = () => {
   
     checkAuthentication();
   }, []);
-
-  useEffect(() => {
-    // Check if the elements exist before creating the charts
-    const clicksChartElement = document.getElementById('myClicks');
-    const ordersChartElement = document.getElementById('myChart');
-
-    if (clicksChartElement && ordersChartElement) {
-      // Create Chart for clicks
-      const clicksChart = new Chart(clicksChartElement, {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [
-            {
-              label: 'Clicks',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1,
-            },
-          ],
-        },
-      });
-
-      // Create Chart for orders
-      const ordersChart = new Chart(ordersChartElement, {
-        type: 'polarArea',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [
-            {
-              label: 'Orders',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1,
-            },
-          ],
-        },
-      });
-
-      // Cleanup when the component unmounts
-      return () => {
-        clicksChart.destroy();
-        ordersChart.destroy();
-      };
-    }
-  }, [dashboardData]);
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -103,6 +56,15 @@ const Dashboard = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" />; // Redirect unauthorized users to login page
   }
+
+  const data = [
+    { label: 'January', value: 30 },
+    { label: 'February', value: 50 },
+    { label: 'March', value: 40 },
+    { label: 'April', value: 60 },
+    { label: 'May', value: 20 },
+    { label: 'June', value: 55 },
+  ];
 
   return (
     <div>
@@ -130,15 +92,20 @@ const Dashboard = () => {
                 <div className="dashboard_sec">
                     <div id="dash_head">
                     <h2>User Dashboard</h2>
-                        {/* <ul id="entry_cont">
-                          <li id="my_entries">
-                              <p>Username: {userData.username}</p>
-                          </li>
-                        </ul> */}
-                        <div id="highlights">
-                            <h1>Good Day, {userData.username}!</h1>
-                            <p>Hey {userData.username}, Here is your account overview</p>
+                      <div id="highlights">
+                          <h1>Good Day, {userData.username}!</h1>
+                          <p>Hey {userData.username}, Here is your account overview</p>
+                      </div>
+                        <>
+                        <div>
+                          <h2>Customer Clicks Dashboard</h2>
+                          <div id='D3_Chart'>
+                            <D3Chart data={data} className="customer_clicks" />
+                            <AreaPlotChart defaultClicks={10} className='area_container'/>
+                          </div>
                         </div>
+
+                        </>
 
                         <div id="total_sales">
                             <div className="sales_visits">
@@ -168,7 +135,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div id="visual_split">
+                {/* <div id="visual_split">
                     
                     <div id="dash_visuals">
 
@@ -181,7 +148,7 @@ const Dashboard = () => {
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> */}
                   <div id="Footer_Dash">
                       <div>
                       <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><li><FontAwesomeIcon icon={faLinkedin} /></li></Link>
