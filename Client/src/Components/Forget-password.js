@@ -16,7 +16,6 @@ const ForgetPassword = ({ onLogin }) => {
   const handleForgetPassword = async () => {
     try {
       setLoading(true);
-      await axios.get('https://personal-site-static.onrender.com/api/forget-password'); // Assuming the forget password endpoint is mounted at '/api/forget-password'
 
       await axios.post('https://personal-site-static.onrender.com/api/forget-password', { email }); // Assuming the forget password endpoint is mounted at '/api/forget-password'
       setMessage('Password reset email sent successfully');

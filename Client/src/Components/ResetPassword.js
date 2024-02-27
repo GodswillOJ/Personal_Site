@@ -15,6 +15,7 @@ const ResetPassword = ({ token }) => {
 
   const handleResetPassword = async () => {
     try {
+      await axios.get('https://personal-site-awu4.onrender.com/api/reset-password');
       await axios.post('https://personal-site-awu4.onrender.com/api/reset-password', { token, newPassword });
       setMessage('Password reset successfully');
     } catch (error) {

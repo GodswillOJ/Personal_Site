@@ -150,7 +150,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 // Forget Password
 
-export const getForgetPassword = async (req, res) => {
+export const getResetPassword = async (req, res) => {
   try {
     res.json({message : 'Reset password'});
   } catch (error) {
