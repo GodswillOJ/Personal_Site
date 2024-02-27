@@ -15,10 +15,13 @@ const ForgetPassword = ({ onLogin }) => {
 
   const handleForgetPassword = async () => {
     try {
-      await axios.post('https://personal-site-awu4.onrender.com/api/forget-password', { email });
+      setLoading(true);
+      await axios.post('https://personal-site-static.onrender.com/api/forget-password', { email }); // Assuming the forget password endpoint is mounted at '/api/forget-password'
       setMessage('Password reset email sent successfully');
     } catch (error) {
       setError('Error sending reset password email');
+    } finally {
+      setLoading(false);
     }
   };
   

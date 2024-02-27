@@ -152,6 +152,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 export const forgetPassword = async (req, res) => {
   const { email } = req.body;
 
+  console.log(email);
+
   try {
     // Find user by email
     const user = await User.findOne({ email });
@@ -197,7 +199,7 @@ export const sendResetPasswordMail = async(username, email, token)=> {
           from: emailUser,
           to: email,
           subject: 'For Reset mail',
-          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/reset-password/${token}">here</a> your password</p>'
+          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/reset-password/?token='+ token +'">here</a> your password</p>'
       }
       transporter.sendMail(mailOptions, function(error, info){
           if (error) {
