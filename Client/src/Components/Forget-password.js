@@ -13,11 +13,11 @@ const ForgetPassword = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleForgetPassword = async () => {
+  const handleForgetPassword = async (e) => {
+    e.preventDefault(); // Prevent default form submission
     try {
-      setLoading(true);
-
-      await axios.post('/api/forget-password', { email }); // Assuming the forget password endpoint is mounted at '/api/forget-password'
+      setLoading(true)
+      await axios.post('https://personal-site-awu4.onrender.com/api/forget-password', { email }); // Assuming the forget password endpoint is mounted at '/api/forget-password'
       setMessage('Password reset email sent successfully');
     } catch (error) {
       setError('Error sending reset password email');
@@ -30,7 +30,7 @@ const ForgetPassword = ({ onLogin }) => {
     <div className="CounterCont">
       <h2 className="Title">Personal Site</h2>
       {message && <p style={{ color: 'blue' }}>{message}</p>}
-      <form onSubmit={handleForgetPassword} className="Counter_Engine" id="registerInput">
+      <form onSubmit={(e) => handleForgetPassword(e)} className="Counter_Engine" id="registerInput">
         <h2>Forget Password</h2>
         <div>
           <label>Enter Email:</label>
