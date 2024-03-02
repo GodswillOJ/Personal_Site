@@ -27,7 +27,7 @@ const ResetPassword = ({ token }) => {
     <div className="CounterCont">
       <h2 className="Title">Personal Site</h2>
       <form onSubmit={handleResetPassword} className="Counter_Engine" id="registerInput">
-        <h2>Forget Password</h2>
+        <h2>Reset Password</h2>
         <div>
           <label>Enter New Password:</label>
           <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
