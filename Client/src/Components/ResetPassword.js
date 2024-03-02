@@ -1,5 +1,3 @@
-// ResetPassword.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -15,11 +13,14 @@ const ResetPassword = ({ token }) => {
 
   const handleResetPassword = async () => {
     try {
-      await axios.get('https://personal-site-awu4.onrender.com/api/reset-password');
-      await axios.post('https://personal-site-awu4.onrender.com/api/reset-password', { token, newPassword });
+      setLoading(true);
+      // Make a POST request to the reset password endpoint on your backend
+      await axios.post('https://personal-site-awu4.onrender.com/api/reset-password', { access_token: token, newPassword });
       setMessage('Password reset successfully');
     } catch (error) {
       setError('Error resetting password');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,7 +34,7 @@ const ResetPassword = ({ token }) => {
           <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? 'Resetting...' : 'Reset Password'}
         </button>
 
         <div id="redirect_log">
@@ -41,6 +42,7 @@ const ResetPassword = ({ token }) => {
         </div>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        {message && <p style={{ color: 'blue' }}>{message}</p>}
       </form>
       <div id="Footer_Dash">
           <div>
