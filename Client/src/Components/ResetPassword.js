@@ -9,6 +9,8 @@ const ResetPassword = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  console.log('Token:', token);
+
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
