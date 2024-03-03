@@ -190,8 +190,7 @@ export const forgetPassword = async (req, res) => {
   }
 };
 
-// Send reset password email
-export const sendResetPasswordMail = async(username, email, resetLink)=> {
+export const sendResetPasswordMail = async (username, email, token) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -203,32 +202,27 @@ export const sendResetPasswordMail = async(username, email, resetLink)=> {
         pass: emailPassword
       }
     });
-    
-    // Constructing the resetLink
-  const resetLink = `https://personal-site-awu4.onrender.com/reset-password?token=${token}`;
-
-  // Example of the resetLink inside the message text
-  const messageText = `Dear User,\n\nYou can reset your password by clicking on the following link:\n${resetLink}\n\nBest regards,\nThe Admin Team`;
-
 
     const mailOptions = {
       from: emailUser,
       to: email,
-      subject: 'Password Reset',
-      text: messageText,
+      subject: 'Reset Password',
+      html: `<p>Hi ${username},</p>
+             <p>Please click <a href="https://personal-site-awu4.onrender.com/reset-password/${token}">here</a> to reset your password.</p>`
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        console.log(error);
+        console.error('Error sending password reset email:', error);
       } else {
-        console.log('Email has been sent:', info.response);
+        console.log('Password reset email sent:', info.response);
       }
     });
   } catch (error) {
-    console.error('Error sending reset password email:', error);
+    console.error('Error sending password reset email:', error);
   }
 };
+
 
 export const resetPassword = async (req, res) => {
   const { token } = req.params;
