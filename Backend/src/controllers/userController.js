@@ -208,7 +208,7 @@ export const sendResetPasswordMail = async (username, email, token) => {
       to: email,
       subject: 'Reset Password',
       html: `<p>Hi ${username},</p>
-             <p>Please click <a href="https://personal-site-awu4.onrender.com/reset-password/${token}">here</a> to reset your password.</p>`
+             <p>Please click <a href="https://personal-site-awu4.onrender.com/api/reset-password/${token}">here</a> to reset your password.</p>`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
