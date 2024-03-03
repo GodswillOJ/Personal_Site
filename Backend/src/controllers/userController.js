@@ -43,7 +43,6 @@ export const insertUser = async (req, res) => {
   }
 };
 
-
 export const LoginVerify = async (req, res) => {
   const { username, password } = req.body;
 
@@ -182,76 +181,81 @@ export const forgetPassword = async (req, res) => {
     await user.save();
 
     // Send reset password email
-    sendResetPasswordMail(user.username, user.email, token);
+    await sendResetPasswordMail(user.username, user.email, token);
 
-    res.status(200).json({ message: 'Password reset email sent successfully' });
+    return res.status(200).json({ message: 'Password reset email sent successfully' });
   } catch (error) {
     console.error('Error in forget password:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error', message: error.message });
   }
 };
 
-export const sendResetPasswordMail = async(username, email, token)=> {
+// Send reset password email
+export const sendResetPasswordMail = async(username, email, resetLink)=> {
   try {
-
-      const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
-          secure: true,
-          requireTLS: true,
-          auth: {
-              user: emailUser,
-              pass: emailPassword
-          }
-      });
-
-      const mailOptions = {
-          from: emailUser,
-          to: email,
-          subject: 'For Reset mail',
-          html: `<p>Hii ${username}, please click <a href="https://personal-site-awu4.onrender.com/api/reset-password/${token}">here</a> to reset your password</p>`
-
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      requireTLS: true,
+      auth: {
+        user: emailUser,
+        pass: emailPassword
       }
-      transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-              console.log(error)
-          } else {
-              console.log('Email has been sent:-', info.response)
-          }
-      })
-  } catch (error) {
-      console.log(error.message)
-  }
-}
+    });
+    
+    // Constructing the resetLink
+  const resetLink = `https://personal-site-awu4.onrender.com/reset-password?token=${token}`;
 
-// Reset Password
+  // Example of the resetLink inside the message text
+  const messageText = `Dear User,\n\nYou can reset your password by clicking on the following link:\n${resetLink}\n\nBest regards,\nThe Admin Team`;
+
+
+    const mailOptions = {
+      from: emailUser,
+      to: email,
+      subject: 'Password Reset',
+      text: messageText,
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email has been sent:', info.response);
+      }
+    });
+  } catch (error) {
+    console.error('Error sending reset password email:', error);
+  }
+};
+
 export const resetPassword = async (req, res) => {
-  const { access_token, newPassword } = req.body;
+  const { token } = req.params;
+  const { newPassword } = req.body;
 
   try {
-    // Find user by reset token
-    const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
+    // Decode the token to get user ID
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userId;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(400).json({ error: 'Invalid or expired token' });
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    // Hash the new password
+    // Update password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-    // Update user's password and clear reset token
     user.password = hashedPassword;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
 
+    // Save the user with the new password
     await user.save();
 
-    // Send password reset confirmation email
-    sendPasswordResetConfirmation(user.username, user.email);
-
-    res.status(200).json({ message: 'Password reset successfully' });
+    return res.status(200).json({ message: 'Password reset successfully' });
   } catch (error) {
-    console.error('Error in reset password:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error resetting password:', error);
+    return res.status(500).json({ error: 'Internal Server Error', message: error.message });
   }
 };
