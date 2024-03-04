@@ -203,12 +203,14 @@ export const sendResetPasswordMail = async (username, email, token) => {
       }
     });
 
+    const here = `https://personal-site-awu4.onrender.com/api/reset-password/${token}`
+
     const mailOptions = {
       from: emailUser,
       to: email,
       subject: 'Reset Password',
-      html: `<p>Hi ${username},</p>
-             <p>Please click <a href="https://personal-site-awu4.onrender.com/api/reset-password/${token}">here</a> to reset your password.</p>`
+      text: `Hi ${username},
+             Please click ${here} to reset your password.`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
