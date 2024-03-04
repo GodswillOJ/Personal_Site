@@ -190,7 +190,7 @@ export const forgetPassword = async (req, res) => {
   }
 };
 
-export const sendResetPasswordMail = async (username, email) => {
+export const sendResetPasswordMail = async (username, email, token) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -203,7 +203,7 @@ export const sendResetPasswordMail = async (username, email) => {
       }
     });
 
-    const here = `https://personal-site-awu4.onrender.com/api/reset-password`
+    const here = `https://personal-site-static.onrender.com/reset-password/${token}`
 
     const mailOptions = {
       from: emailUser,
