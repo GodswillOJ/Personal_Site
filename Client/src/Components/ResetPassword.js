@@ -16,7 +16,7 @@ const ResetPassword = () => {
     try {
       setLoading(true);
       // Make a POST request to the reset password endpoint on your backend
-      await axios.post(`https://personal-site-awu4.onrender.com/api/reset-password/${token}`, { newPassword });
+      await axios.post(`/api/reset-password/${token}`, { newPassword });
       setMessage('Password reset successfully');
     } catch (error) {
       setError('Error resetting password');

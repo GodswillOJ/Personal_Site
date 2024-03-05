@@ -203,7 +203,7 @@ export const sendResetPasswordMail = async (username, email, token) => {
       }
     });
 
-    const here = `https://personal-site-static.onrender.com/reset-password/${token}`
+    const here = `https://localhost:3000/reset-password/${token}`
 
     const mailOptions = {
       from: emailUser,
