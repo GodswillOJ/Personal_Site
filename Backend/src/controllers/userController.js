@@ -205,14 +205,13 @@ export const sendResetPasswordMail = async (username, userId, email, token) => {
       }
     });
 
-    const here = `https://personal-site-static.onrender.com/reset-password/${userId}/${token}`;
+    const resetLink = `https://personal-site-static.onrender.com/reset-password/${userId}/${token}`;
 
     const mailOptions = {
       from: emailUser,
       to: email,
       subject: 'Reset Password',
-      text: `Hi ${username},
-             Please click ${here} to reset your password.`
+      html: `<p>Hi ${username},<br/>Please click <a href="${resetLink}">here</a> to reset your password</p>`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -226,6 +225,7 @@ export const sendResetPasswordMail = async (username, userId, email, token) => {
     console.error('Error sending password reset email:', error);
   }
 };
+
 
 
 export const resetPassword = async (req, res) => {
