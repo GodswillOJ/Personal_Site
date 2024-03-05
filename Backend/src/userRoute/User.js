@@ -13,7 +13,7 @@ userRouter.use(express.json());
 userRouter.post('/registerUser', userController.insertUser);
 userRouter.post('/login', userController.LoginVerify);
 userRouter.post('/forget-password', userController.forgetPassword);
-userRouter.post('/reset-password/:token', userController.resetPassword); // New route for resetting password
+userRouter.post('/reset-password/:id/:token', userController.resetPassword); // New route for resetting password
 userRouter.get('/dashboard', isAuthenticated, userController.fetchUserData);
 userRouter.get('/', isAuthenticated, userController.fetchUserData);
 

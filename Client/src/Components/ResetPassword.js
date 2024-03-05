@@ -3,20 +3,26 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
-  const { token } = useParams(); // Extract the token parameter from the URL
+  const { token, _id } = useParams(); // Extract the token and ID parameters from the URL
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   console.log('Token:', token);
+  console.log('ID:', _id);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       // Make a POST request to the reset password endpoint on your backend
-      await axios.post(`https://personal-site-awu4.onrender.com/api/reset-password/${token}`, { newPassword });
+      await axios.post(`https://personal-site-awu4.onrender.com/api/reset-password/${_id}/${token}`, { newPassword }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      
       setMessage('Password reset successfully');
     } catch (error) {
       setError('Error resetting password');

@@ -66,7 +66,7 @@ function App() {
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/About" element={<About isLoggedIn={isLoggedIn} />} />
           <Route path="/forget-password" element={<ForgetPassword isLoggedIn={isLoggedIn} />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />

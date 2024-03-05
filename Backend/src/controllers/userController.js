@@ -165,10 +165,10 @@ export const forgetPassword = async (req, res) => {
 
   try {
     // Find user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.send({ error: 'User not found' });
     }
 
     // Generate a unique token using JWT
@@ -180,8 +180,10 @@ export const forgetPassword = async (req, res) => {
 
     await user.save();
 
+    var userId = user._id;
+
     // Send reset password email
-    await sendResetPasswordMail(user.username, user.email, token);
+    await sendResetPasswordMail(user.username, userId, user.email, token);
 
     return res.status(200).json({ message: 'Password reset email sent successfully' });
   } catch (error) {
@@ -190,7 +192,7 @@ export const forgetPassword = async (req, res) => {
   }
 };
 
-export const sendResetPasswordMail = async (username, email, token) => {
+export const sendResetPasswordMail = async (username, userId, email, token) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -203,7 +205,7 @@ export const sendResetPasswordMail = async (username, email, token) => {
       }
     });
 
-    const here = `https://personal-site-static.onrender.com/reset-password/${token}`
+    const here = `https://personal-site-static.onrender.com/reset-password/${userId}/${token}`;
 
     const mailOptions = {
       from: emailUser,
