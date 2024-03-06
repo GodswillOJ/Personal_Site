@@ -205,7 +205,7 @@ export const sendResetPasswordMail = async (username, userId, email, token) => {
       }
     });
 
-    const resetLink = `https://personal-site-static.onrender.com/reset-password/${userId}/${token}`;
+    const resetLink = `https://personal-site-awu4.onrender.com/reset-password/${userId}/${token}`;
 
     const mailOptions = {
       from: emailUser,
@@ -225,8 +225,6 @@ export const sendResetPasswordMail = async (username, userId, email, token) => {
     console.error('Error sending password reset email:', error);
   }
 };
-
-
 
 export const resetPassword = async (req, res) => {
   const { token } = req.params;
