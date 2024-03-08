@@ -36,11 +36,11 @@ db.once('open', () => {
 
 
 // Serve the React app for all 
-// app.use(express.static(path.join(__dirname, 'Client', 'build')));
+app.use(express.static(path.join(__dirname, 'Client', 'build')));
 
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'Client', 'build', 'index.html')); // Adjust path accordingly
-// });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Client', 'build', 'index.html')); // Adjust path accordingly
+});
 app.use('/api', userRouter);
 
 app.listen(PORT, () => {
