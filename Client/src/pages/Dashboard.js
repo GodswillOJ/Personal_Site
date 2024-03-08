@@ -17,7 +17,6 @@ const Dashboard = () => {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        // Check if the access token is present in local storage
         const accessToken = localStorage.getItem('access_token');
         if (accessToken) {
           setIsAuthenticated(true);
@@ -30,17 +29,15 @@ const Dashboard = () => {
         } else {
           setIsAuthenticated(false);
         }
-
       } catch (error) {
         setIsAuthenticated(false);
       } finally {
         setLoading(false);
       }
     };
-  
     checkAuthentication();
   }, []);
-
+  
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {

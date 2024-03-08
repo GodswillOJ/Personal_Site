@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     checkLoggedInStatus();
   }, []);
-
+  
   const checkLoggedInStatus = async () => {
     const storedLoggedIn = localStorage.getItem('access_token') ? true : false;
     setLoggedIn(storedLoggedIn);
@@ -34,14 +34,14 @@ function App() {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
         });
-        setUser(response.data.user);
+        setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
-        setLoggedIn(false);
-        localStorage.removeItem('access_token');
+        handleLogout(); // Log out the user if token is invalid or expired
       }
     }
   };
+  
 
   const handleLogin = () => {
     setLoggedIn(true);
