@@ -2,10 +2,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import path from 'path';
 import dotenv from 'dotenv';
 import { userRouter } from './src/userRoute/User.js';
 
 dotenv.config();
+
+const __dirname = path.resolve(); // Define __dirname manually for ES modules
 
 // ... (existing imports)
 
@@ -31,6 +34,13 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+
+// Serve the React app for all routes
+app.use(express.static(path.join(__dirname, 'Client', 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Client', 'build', 'index.html')); // Adjust path accordingly
+});
 app.use('/api', userRouter);
 
 app.listen(PORT, () => {
