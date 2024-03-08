@@ -1,0 +1,4 @@
+services:
+  - name: https://personal-site-static.onrender.com
+    env: node
+    startCommand: npm start
