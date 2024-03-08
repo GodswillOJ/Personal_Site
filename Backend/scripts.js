@@ -35,7 +35,7 @@ db.once('open', () => {
 });
 
 
-// Serve the React app for all routes
+// Serve the React app for all 
 // app.use(express.static(path.join(__dirname, 'Client', 'build')));
 
 // app.get('/*', (req, res) => {
