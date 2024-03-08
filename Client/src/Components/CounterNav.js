@@ -86,7 +86,7 @@ const CounterNav = ({ isLoggedIn, onLogout }) => {
             )}
           </li>
         </div>
-        <Link to="/about">
+        <Link to="/About">
           <li>About</li>
         </Link>
       </div>

@@ -6,7 +6,7 @@
   "devServer": {
     "allowedHosts": "localhost:10000"
   },
-  "homepage": "https://personal-site-web.onrender.com",
+  "homepage": "https://personal-site-static.onrender.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
