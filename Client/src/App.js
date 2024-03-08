@@ -72,6 +72,7 @@ function App() {
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           {/* Use PrivateRoute for the Dashboard */}
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} authenticated={isLoggedIn} />} />
+
           {/* Add more routes as needed */}
         </Routes>
       </Router>

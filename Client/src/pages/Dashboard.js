@@ -21,17 +21,16 @@ const Dashboard = () => {
         const accessToken = localStorage.getItem('access_token');
         if (accessToken) {
           setIsAuthenticated(true);
-          // Fetch user data for the dashboard
           const response = await axios.get('https://personal-site-awu4.onrender.com/api/dashboard', {
             headers: {
-              Authorization: `Bearer ${accessToken}` // Include the access token in the request headers
+              Authorization: `Bearer ${accessToken}`
             }
           });
           setUserData(response.data);
-          // setDashboardData(response.data);
         } else {
           setIsAuthenticated(false);
         }
+
       } catch (error) {
         setIsAuthenticated(false);
       } finally {
