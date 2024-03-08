@@ -99,6 +99,7 @@ export const fetchUserData = async (req, res) => {
   try {
     // Fetch user data
     const userData = await User.findById(req.user.userId); // Assuming you have a User model
+    console.log(userData)
     res.json(userData);
   } catch (error) {
     console.error('Error fetching user data for dashboard:', error);
