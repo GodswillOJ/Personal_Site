@@ -18,6 +18,7 @@ const Dashboard = () => {
     const checkAuthentication = async () => {
       try {
         const accessToken = localStorage.getItem('access_token');
+        console.log(accessToken)
         if (accessToken) {
           setIsAuthenticated(true);
           const response = await axios.get('https://personal-site-awu4.onrender.com/api/dashboard', {

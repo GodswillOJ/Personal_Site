@@ -25,6 +25,7 @@ function App() {
   
   const checkLoggedInStatus = async () => {
     const storedLoggedIn = localStorage.getItem('access_token') ? true : false;
+    console.log(storedLoggedIn)
     setLoggedIn(storedLoggedIn);
     setLoading(false);
     if (storedLoggedIn) {
