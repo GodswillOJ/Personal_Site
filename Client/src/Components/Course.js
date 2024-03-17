@@ -49,7 +49,8 @@ const Courses_Comp = () => {
     });
   };
 
-    const myImage = 'oneonone.jpg';
+    const myImage = 'pexels-fauxels-3184339.jpg';
+    const MyImage = 'mansmiling.jpg';
 
     return (
         <div className='All_Courses'>
@@ -66,7 +67,7 @@ const Courses_Comp = () => {
               </div>
 
               <div className='all_c'>
-                  <div className='class_onsite' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/${myImage})` }}>
+                  <div className='class_onsite' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/${MyImage})` }}>
                     <p>course_info, Contact a tutor onsite. We offer the best tutors that will meet your needs. Click the button below, and get linked to a tutor close to you. Happy learning</p>
                     <input type='button' value={'Contact tutor'}/>
                   </div>
