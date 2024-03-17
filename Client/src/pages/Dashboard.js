@@ -121,7 +121,7 @@ const Dashboard = () => {
                                 <Link to="" >view notification <i className="fa-solid fa-circle-chevron-right"></i></Link>
                             </li>
                             <li className="not_product">
-                                <p>18 new clicks notification</p>
+                                <p>18 courses notification</p>
                                 <Link to="" >view notification <i className="fa-solid fa-circle-chevron-right"></i></Link>
                             </li>
                             <li className="not_product">

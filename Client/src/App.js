@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import CounterNav from './Components/CounterNav';
 import { Register, Login } from './pages/auth';
 import Dashboard from './pages/Dashboard';
+import Courses from './pages/Courses';
 import Home from './pages/home';
 import About from './pages/About';
 import ResetPassword from './Components/ResetPassword';
@@ -69,6 +70,7 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword isLoggedIn={isLoggedIn} />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/all_courses" element={<Courses />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           {/* Use PrivateRoute for the Dashboard */}

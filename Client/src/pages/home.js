@@ -62,7 +62,7 @@ const Home = ({ isLoggedIn }) => {
           <div className="site_hint">
             <h1>Gotech IT Training</h1>
             <p>Just a click away from your desired website</p>
-            <Link to="/courses"><button className="button-default">See courses</button></Link>
+            <Link to="/all_courses"><button className="button-default">See courses</button></Link>
           </div>
         </div>
         <section className="courses_">
