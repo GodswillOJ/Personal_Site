@@ -395,6 +395,11 @@ html{
       background: linear-gradient(to right, #09021e, #12425c);
       border-radius: 5px;
     }
+    .single_cont_:hover {
+      position: relative;
+      background: linear-gradient(to right, #1b0207, #072c40);
+      border-radius: 5px;
+    }
     .course_name{
       position: relative;
       border-radius: 50%;
