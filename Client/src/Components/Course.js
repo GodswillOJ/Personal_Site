@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faMagnifyingGlass, faEnvelope, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Courses_Comp = () => {
@@ -107,7 +108,9 @@ const Courses_Comp = () => {
                     </div>
                     <div className='each_c'>
                           <div className='my_img1'>
-                            <img src={`${process.env.PUBLIC_URL}/images/web.jpg`} alt="My Image" />
+                            <Link to='/single_course'>
+                              <img src={`${process.env.PUBLIC_URL}/images/web.jpg`} alt="My Image" />
+                            </Link>
                           </div>
                           <div className='c_information'>
                               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur ipsum quos repellat facere qui fuga sequi fugiat ea maxime</p>

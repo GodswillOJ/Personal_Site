@@ -327,8 +327,11 @@ html{
     border-color: none;
     border-radius: 5px;
     color: #fff;
+    padding: 0 5px 0 5px;
+    font-size: 16px;
+    width: 100%;
     font-weight: bold;
-    margin-left: 12%;
+    margin-left: 0;
   }
   .each_c .c_information{
     position: relative;
@@ -346,11 +349,6 @@ html{
 }
 
     /* time-frame */
-    .select-container select {
-      width: 200px; /* Adjust width as needed */
-      padding: 5px;
-    }
-    
     .select-container option {
       text-align: left;
     }
@@ -383,8 +381,109 @@ html{
       display: inline-block;
       margin-right: 10px;
     }
+
+
+    /* Single_course_styling */
+    .single_cont_{
+      position: relative;
+      display: grid;
+      /* justify-content: space-between; */
+      grid-template-columns: 2fr 1fr;
+      margin-top: 10%;
+      border: 1px solid #000;
+      align-items: center;
+      background: linear-gradient(to right, #09021e, #12425c);
+      border-radius: 5px;
+    }
+    .course_name{
+      position: relative;
+      border-radius: 50%;
+      width: 80%;
+      text-align: center;
+      background: linear-gradient(to right, #221a3d, #6f97f4);
+      box-shadow: 0px 8px 15px rgba(250, 250, 248, 0.1);
+      color: #fff;
+      border: 1px solid #ded496;
+      margin-left: 10%;
+    }
+    #course-hints {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(100px, 1fr)); /* Define your grid columns */
+      grid-gap: 2px; /* Set the gap between grid items */
+      padding: 10px;
+      color: #b2b3af;
+      font-weight: bold;
+    } 
+
+    /* about_course */
+    #course_headline {
+      position: relative;
+      text-align: left;
+      font-size: 24px;
+      color: #2c0909;
+    }
+    #course_descrip{
+      position: relative;
+      margin: 5% 4% 4% 20px;
+      padding: 5px;
+      border: 1px solid #d3c1d9;
+    }
     
+    .c_info_c{
+      position: relative;
+      display: flex;
+    }
+    .c_info_c  .select-container select {
+      margin-left: 15px;
+    }
+    
+    .c_info_{
+      position: relative;
+      width: 80%;
+      border: 1px solid #cbcbcd;
+      margin: 0 5% 0 2%;
+      padding: 10px;
+    }
+
+    /* amount */
+    .each_course{
+      position: relative;
+      display: block;
+    }
+
+    #amnt_cost{
+      position: relative;
+      display: flex;
+      font-size: 26px;
+      font-weight: bold;
+      align-items: center;
+    }
+
+    .course_duration ul {
+      padding: 0;
+    }
+    .course_duration ul button{
+      margin: 5px;
+      color: #fff;
+    }
+    .course_duration ul #course_online{
+      background: #a268ef;
+    }
+    .course_duration ul #course_offline{
+      background: #678295;
+    }
+    .course_duration ul #course_online:hover{
+      background: #7f19aa;
+    }
+    .course_duration ul #course_offline:hover{
+      background: #212f54;
+    }
+
     @media screen and (max-width: 768px) {
+      .All_Courses{
+        margin-top: 12%;
+      }
       .day-list-item {
         /* flex-direction: column; */
         align-items: flex-start;
@@ -392,6 +491,16 @@ html{
       .course_cat{
         position: relative;
         width: 100%;
+      }
+      .single_cont_{
+        position: relative;
+        display: block;
+        justify-content: space-between;
+        margin-top: 10%;
+        border: 1px solid #000;
+        text-align: center;
+        background: #000000;
+        border-radius: 5px;
       }
       .each_course{
         position: relative;
@@ -408,6 +517,25 @@ html{
     
     
  @media screen and (max-width: 1025px) {
+      .time-frames{
+        margin: 5% 5% 0 5%;
+      }
+
+      /* single_course_info */
+
+      .c_info_c{
+        position: relative;
+        display: block;
+      }
+
+      .c_info_{
+        position: relative;
+        width:  auto;
+        border: 1px solid #cbcbcd;
+        margin: 0 5% 0 2%;
+        padding: 10px;
+      }
+
       #course_title{
         font-size: 23px;
       }
@@ -418,9 +546,20 @@ html{
         padding-left: 40px;
         padding-right: 20px;
       }
+      .each_c .c_information input{
+        width: 100%;
+        margin-left: 0;
+        padding: 5px;
+        font-size: 18px;
+      }
  }
 
   @media screen and (max-width: 760px) {
+
+    .course_name{
+      position: relative;
+      margin-top: 10%;
+    }
     .class-list {
       font-size: 14px; /* Example responsive font size */
       
@@ -436,9 +575,6 @@ html{
     
     .each_course{
       display: block;
-    }
-    .time-frames{
-      margin-left: 10%;
     }
  
     .each_c{
@@ -520,6 +656,9 @@ html{
 }
 
 @media screen and (max-width: 470px) {
+      .single_cont_{
+        margin-top: 20%;
+      }
       .cr_feat{
         margin: 0 15% 0 15%;
         font-size: 9px;
@@ -531,6 +670,13 @@ html{
 }
 
 @media screen and (max-width: 380px) {
+  /* single_add */
+      .c_info_{
+        position: relative;
+        border: 1px solid #cbcbcd;
+        margin: 0 5% 0 2%;
+        padding: 10px;
+      }
       .cr_feat{
         margin: 0 10% 0 10%;
         margin-top: 20em;
@@ -544,4 +690,11 @@ html{
         margin: 0;
       
       }
+}
+
+@media screen and (max-width: 280px) {
+  .single_cont_{
+    margin-top: 35%;
+  }
+
 }
