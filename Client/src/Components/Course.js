@@ -54,10 +54,7 @@ const Courses_Comp = () => {
     const MyImage = 'mansmiling.jpg';
 
     return (
-        <div className='All_Courses'>
-           <div>
-              <p>Courses Page</p>
-           </div>
+        <div className='All_Courses_'>
 
            <div className='course_cont'>
               <div className='all_c'>

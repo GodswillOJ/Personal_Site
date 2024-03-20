@@ -42,7 +42,43 @@ const userSchema = new  mongoose.Schema({
       type: Date,
       required: true,
       default: Date.now(),
-    }, 
+    },
+    post:{
+      posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post',
+        // required: true
+      }]
+    },
+    cart: {
+      totalPrice: {type: Number, default: 0},
+      items: [{
+        name: {
+        type: String,
+        required: true
+        },
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post',
+        required: true
+        },
+      quantity: {
+        type: Number,
+        required: true
+        },
+      price: {
+        type: Number,
+        },
+      image: {
+        type: String,
+        }
+      }]
+    },
+    orders:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+      required: true
+    }],
     updatedAt: {
       type: Date, 
       default: Date.now(),

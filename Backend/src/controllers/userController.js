@@ -1,4 +1,5 @@
 import { Post, User } from '../models/User.js';
+import { Category } from '../models/category.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -7,6 +8,8 @@ import nodemailer from 'nodemailer'
 dotenv.config();
 
 const JWT_Phrase = process.env.JWT;
+
+// insrting clients
 
 export const insertUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -43,6 +46,44 @@ export const insertUser = async (req, res) => {
   }
 };
 
+// inserting Admin
+export const insertAdmin = async (req, res) => {
+  const { username, email, password } = req.body;
+
+  // Validate input fields
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: 'Username, email, and password are required' });
+  }
+
+  const user = await User.findOne({ username });
+
+  if (user) {
+    return res.status(400).json({ error: 'User already exists on the site' });
+  }
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({ username, email, password: hashedPassword, is_admin: 1 });
+
+  try {
+    const savedUser = await newUser.save();
+    if (savedUser) {
+      // Call sendVerifyMail function with user details
+      sendVerifyMail(savedUser.username, savedUser.email, savedUser._id);
+      console.log(savedUser);
+      res.json(savedUser);
+    } else {
+      res.status(500).json({ error: 'Error in verifying user' });
+    }
+  } catch (error) {
+    console.error('Error adding user:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// user login
+
 export const LoginVerify = async (req, res) => {
   const { username, password } = req.body;
 
@@ -78,6 +119,47 @@ export const LoginVerify = async (req, res) => {
   }
 };
 
+// admin logi verify
+
+export const AdminLoginVerify = async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+  if (user.is_admin === 1) {
+    try {
+      console.log('Received login request for username:', username);
+
+      // Check if the user exists
+      if (!user) {
+        console.log('User not found:', username);
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      // Check if the password is correct
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword) {
+        console.log('Invalid password for user:', username);
+        return res.status(401).json({ error: 'Invalid credentials password or username' });
+      }
+
+      // Generate JWT token
+      if (user.is_admin === 0) {
+        const token = jwt.sign({ userId: user._id }, JWT_Phrase, { expiresIn: '1d' }); // set to 1 day
+        
+        res.json({ access_token: token, userID: user._id });
+      } else {
+        // Change the status to 401 for consistency with the frontend
+        res.status(401).json({ error: 'Invalid credentials' });
+      }
+    } catch (error) {
+      console.error('Login error:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  } else {
+    console.error('Unauthorized User')
+    res.status(401).json({error: 'Invalid User Login, You are not admin'})
+  }
+  };
+
 export const Home = async (req, res) => {
   try {
     // Check if the user is logged in
@@ -106,6 +188,32 @@ export const fetchUserData = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export const fetchCatData = async (req, res) => {
+  try {
+    // Fetch user data
+    // const userData = await Category.findById(req.user.userId); 
+    // console.log(userData)
+    // res.json(userData);
+    let category = new Category({
+      name: req.body.name,
+      tags: req.body.tags,
+      description: req.body.description
+    })
+      category = await category.save()
+
+    if (category) {
+      res.json(category);
+    } else {
+      console.error('Error is setting up category')
+      res.status(500).json({error: 'Error in adding category'})
+    }
+  } catch (error) {
+    console.error('Error at backend Server category controller:', error);
+    res.status(500).json({ error: 'Internal Server Error Category Controller' });
+  }
+};
+
 
 // For verify mail
 const port = process.env.PORT

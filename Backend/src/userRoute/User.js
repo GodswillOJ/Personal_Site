@@ -11,11 +11,13 @@ userRouter.use(express.json());
 
 // Define routes
 userRouter.post('/registerUser', userController.insertUser);
+userRouter.post('/registerAdmin?_', userController.insertAdmin);
 userRouter.post('/login', userController.LoginVerify);
+userRouter.post('/loginAdmin?_', userController.AdminLoginVerify);
 userRouter.post('/forget-password', userController.forgetPassword);
 userRouter.post('/reset-password/:id/:token', userController.resetPassword); // New route for resetting password
 userRouter.get('/dashboard', isAuthenticated, userController.fetchUserData);
-userRouter.get('/all_courses', isAuthenticated, userController.fetchUserData);
+userRouter.get('/all_courses', isAuthenticated, userController.fetchCatData);
 userRouter.get('/single_course', isAuthenticated, userController.fetchUserData);
 userRouter.get('/', isAuthenticated, userController.fetchUserData);
 

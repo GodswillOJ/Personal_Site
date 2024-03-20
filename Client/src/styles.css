@@ -454,7 +454,8 @@ html{
     /* amount */
     .each_course{
       position: relative;
-      display: block;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
     }
 
     #amnt_cost{
@@ -484,41 +485,10 @@ html{
     .course_duration ul #course_offline:hover{
       background: #212f54;
     }
-
-    @media screen and (max-width: 768px) {
-      .All_Courses{
-        margin-top: 12%;
-      }
-      .day-list-item {
-        /* flex-direction: column; */
-        align-items: flex-start;
-      }
-      .course_cat{
-        position: relative;
-        width: 100%;
-      }
-      .single_cont_{
-        position: relative;
-        display: block;
-        justify-content: space-between;
-        margin-top: 10%;
-        border: 1px solid #000;
-        text-align: center;
-        background: #000000;
-        border-radius: 5px;
-      }
-      .each_course{
-        position: relative;
-        display: grid;
-        padding-right: 0;
-        grid-template-columns: 3fr 1fr;
-      }
-      .cat_show li {
-        display: inline-block;
-        font-size: 10px;
-      }
+    .All_Courses_{
+      position: relative;
+      margin-top: 10%;
     }
-    
     
     
  @media screen and (max-width: 1025px) {
@@ -558,6 +528,49 @@ html{
         font-size: 18px;
       }
  }
+
+ @media screen and (max-width: 850px) {
+  .All_Courses_{
+    position: relative;
+    margin-top: 15%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .All_Courses{
+    margin-top: 12%;
+  }
+  .day-list-item {
+    /* flex-direction: column; */
+    align-items: flex-start;
+  }
+  .course_cat{
+    position: relative;
+    width: 100%;
+  }
+  .single_cont_{
+    position: relative;
+    display: block;
+    justify-content: space-between;
+    margin-top: 10%;
+    border: 1px solid #000;
+    text-align: center;
+    background: #000000;
+    border-radius: 5px;
+  }
+  .each_course{
+    position: relative;
+    display: grid;
+    padding-right: 0;
+    grid-template-columns: 3fr 1fr;
+  }
+  .cat_show li {
+    display: inline-block;
+    font-size: 10px;
+  }
+}
+
+
 
   @media screen and (max-width: 760px) {
 
@@ -676,6 +689,9 @@ html{
 
 @media screen and (max-width: 380px) {
   /* single_add */
+      .All_Courses_{
+        margin-top: 20%;
+      }
       .c_info_{
         position: relative;
         border: 1px solid #cbcbcd;
@@ -698,6 +714,11 @@ html{
 }
 
 @media screen and (max-width: 280px) {
+  /* courses_page */
+  .All_Courses_{
+    margin-top: 30%;
+  }
+
   .single_cont_{
     margin-top: 35%;
   }

@@ -35,11 +35,26 @@ body {
 }
 
 body.dark-theme{
-  background: linear-gradient(to right, #161919, #3e3a3a);
+  background: linear-gradient(to right, #040012, #0a0000);
 }
 body.dark-theme .Counter_Engine {
   color: white;
 }
+body.dark-theme .All_Courses {
+  color: white;
+}
+
+body.dark-theme #course_descrip {
+  background: linear-gradient(to right, #460e5b, #0a0000); 
+}
+
+body.dark-theme .single_cont_ {
+  background: linear-gradient(to right, #4d3f53, #0a0000); 
+}
+body.dark-theme #course_headline {
+   color: #76e0e1;
+}
+
 body.dark-theme .Counter_Engine .Title {
   color: rgb(182, 214, 221);
   text-shadow: 0px 0.1px 0px rgb(243, 246, 246);
@@ -542,7 +557,6 @@ main{
 }
 
 }
-
 
 @media screen and (max-width: 375px){
   .CounterCont{

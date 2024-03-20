@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import CounterNav from './Components/CounterNav';
-import { Register, Login } from './pages/auth';
+import { Register, Login, AdminRegister, AdminLogin } from './pages/auth';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import Single_courses from './pages/Single_courses';
@@ -71,9 +71,11 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword isLoggedIn={isLoggedIn} />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/registerAdmin?_" element={<AdminRegister />} />
           <Route path="/all_courses" element={<Courses />} />
           <Route path="/single_course" element={<Single_courses />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/loginAdmin?_" element={<AdminLogin onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           {/* Use PrivateRoute for the Dashboard */}
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} authenticated={isLoggedIn} />} />
