@@ -16,7 +16,7 @@ const Single_course = () => {
           console.log(accessToken)
           if (accessToken) {
             setIsAuthenticated(true);
-            const response = await axios.get('https://personal-site-awu4.onrender.com/api/web_development', {
+            const response = await axios.get('https://personal-site-awu4.onrender.com/api/single_course', {
               headers: {
                 Authorization: `Bearer ${accessToken}`
               }
@@ -58,17 +58,18 @@ const Single_course = () => {
 
            <div className='single_cont_'>
                 <div className='course_name'>
-                    <h3>Full-Stack Web Programming</h3>
+                    <h3>Machine Learning</h3>
                 </div>
                 <div id='course-hints'>
                     <div id='course-hint'>
-                        <p>Front-end Basis</p>
-                        <p>ReactJs</p>
-                        <p>NodeJs</p>
+                        <p>Supervised Learning (SL)</p>
+                        <p>Unsupervised Learning (USL)</p>
+                        <p>Model Evaluation and Validation</p>
                     </div>
                     <div id='course-hint'>
-                        <p>MongoDB</p>
-                        <p>NextJs</p>
+                        <p>Neural Network</p>
+                        <p>SVM</p>
+                        <p>NLP</p>
                     </div>
                 </div>
            </div>
@@ -80,73 +81,76 @@ const Single_course = () => {
                       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus doloribus culpa distinctio sit harum repellat dolore ratione inventore, nesciunt vero.</p>
                       <h4>Full-Stack Web Programming Outline</h4>
                       <p id='course_descrip_in'>
-                          This comprehensive course covers the essentials of full-stack web development, focusing on modern technologies and frameworks including HTML, CSS, React, MongoDB, Node.js, and Next.js. Participants will gain hands-on experience building dynamic web applications from scratch, mastering both front-end and back-end development techniques. By the end of the course, students will have the skills to create robust, scalable web applications ready for deployment.
+                      This course serves as an introduction to the fundamental concepts, techniques, and applications of machine learning. Students will gain a solid understanding of the basic principles behind machine learning algorithms and how to apply them to solve real-world problems.
                       </p>
                   </div>
                     <div className='c_info_c'>
                         <div className='c_info_'>
-                            <b>Module 1: Introduction to Web Development</b>
+                            <b>Module 1: Introduction to Machine Learning</b>
                             <p>
-                            ·         Overview of web development technologies
-                            ·         Introduction to HTML and CSS
-                            ·         Setting up a development environment
+                                    What is Machine Learning?
+                                    Types of Machine Learning: Supervised, Unsupervised, and Reinforcement Learning
+                                    Applications of Machine Learning
+                                    Python Setup for Machine Learning
+
                             </p>
                             
-                            <b>Module 2: Front-End Development with React</b>
+                            <b>Module 2: Exploratory Data Analysis (EDA)</b>
                             <p>
-                            ·         Introduction to React and its ecosystem
-                            ·         JSX syntax and component structure
-                            ·         State management and props
-                            ·         Handling user input and events
-                            ·         React Hooks for functional components
-                            ·         Building reusable components
-                            ·         Styling with CSS-in-JS and styled-components
+                                    Data Preprocessing
+                                    Data Visualization Techniques
+                                    Handling Missing Data
+                                    Feature Engineering
                             </p>
-                            <b>Module 3: Back-End Development with Node.js and Express.js 	</b>
+                            <b>Module 3: Supervised Learning - Regression 	</b>
                             <p>
-                            ·         Introduction to Node.js and server-side JavaScript
-                            ·         Setting up a Node.js environment
-                            ·         Creating RESTful APIs with Express.js
-                            ·         Handling HTTP requests and responses
-                            ·         Middleware and error handling
-                            ·         Authentication and authorization with JWT
-                            ·         Integrating MongoDB with Mongoose for data persistence
+                                    Linear Regression
+                                    Polynomial Regression
+                                    Evaluation Metrics: MSE, RMSE, MAE, R-squared
+                                    Model Evaluation and Validation
                             </p>
 
-                            <b>Module 4: Database Management with MongoDB </b>
+                            <b>Module 4: Supervised Learning - Classification </b>
                             <p>
-                            ·         Introduction to MongoDB and NoSQL databases
-                            ·         Basic CRUD operations with MongoDB
-                            ·         Data modeling and schema design
-                            ·         Indexing and querying MongoDB
+                                    Logistic Regression
+                                    k-Nearest Neighbors (k-NN)
+                                    Decision Trees
+                                    Evaluation Metrics: Accuracy, Precision, Recall, F1 Score
                             </p>
 
-                            <b>Module 5: Building Full-Stack Applications with React and Node.js</b>
+                            <b>Module 5: Unsupervised Learning</b>
                             <p>
-                            ·         Integrating React with Node.js backend Consuming APIs in React applications
-                            ·         Implementing user authentication and authorization
-                            ·         Handling forms and form validation
-                            ·         Implementing pagination and sorting
-                            ·         Deployment strategies for full-stack applications
+
+                                    Clustering Algorithms: K-Means, Hierarchical Clustering
+                                    Dimensionality Reduction Techniques: PCA (Principal Component Analysis)
                             </p>
 
-                            <b>Module 6: Advanced Front-End Development with Next.js</b>
+                            <b>Module 6:Introduction to Neural Networks</b>
                             <p>
-                            ·         Introduction to Next.js and server-side rendering (SSR)
-                            ·         Setting up a Next.js project
-                            ·         Routing and navigation in Next.js
-                            ·         Data fetching strategies (Server-side rendering, Static Site Generation, Incremental Static Regeneration)
-                            ·         Optimizing performance and SEO with Next.js
-                            ·         Deploying Next.js applications
+                                    Basics of Artificial Neural Networks (ANNs)
+                                    Activation Functions
+                                    Training Neural Networks: Back propagation, Gradient Descent
+                                    Introduction to Deep Learning
                             </p>
-                            <b>Module 7: Final Project</b>
+                            <b>Module 7: Deep Learning with TensorFlow</b>
                             <p>
-                            ·         Capstone project to apply all concepts learned throughout the course
-                            ·         Building a full-stack web application from scratch
-                            ·         Implementing features such as user authentication, data management, and real-time updates
-                            ·         Deploying the final project to a hosting platform
+                                    Introduction to TensorFlow and Keras
+                                    Building and Training Deep Learning Models
+                                    Convolutional Neural Networks (CNNs) for Image Classification
                             </p>
-
+                            <b>Module 8: Advanced Topics in Machine Learning</b>
+                            <p>
+                                    Ensemble Learning: Bagging and Boosting
+                                    Introduction to Support Vector Machines (SVM)
+                                    Introduction to Natural Language Processing (NLP) and Text Classification
+                            </p>
+                            <b>Module 9: Case Studies and Practical Applications</b>
+                            <p>
+                                    Real-world examples of machine learning applications
+                                    Hands-on projects and assignments
+                                    Ethical considerations in machine learning
+                            </p>
+                            <b>Final Project</b>
                         </div>
 
                         <div className='each_course'>

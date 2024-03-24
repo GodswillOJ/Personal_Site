@@ -16,7 +16,7 @@ const Single_course = () => {
           console.log(accessToken)
           if (accessToken) {
             setIsAuthenticated(true);
-            const response = await axios.get('https://personal-site-awu4.onrender.com/api/web_development', {
+            const response = await axios.get('https://personal-site-awu4.onrender.com/api/single_course', {
               headers: {
                 Authorization: `Bearer ${accessToken}`
               }
@@ -58,17 +58,17 @@ const Single_course = () => {
 
            <div className='single_cont_'>
                 <div className='course_name'>
-                    <h3>Full-Stack Web Programming</h3>
+                    <h3>Data Analysis</h3>
                 </div>
                 <div id='course-hints'>
                     <div id='course-hint'>
-                        <p>Front-end Basis</p>
-                        <p>ReactJs</p>
-                        <p>NodeJs</p>
+                        <p>Introduction to Data Analysis</p>
+                        <p>Numpy</p>
+                        <p>Pandas</p>
                     </div>
                     <div id='course-hint'>
-                        <p>MongoDB</p>
-                        <p>NextJs</p>
+                        <p>PostgreSQL</p>
+                        <p>MatPlotLib</p>
                     </div>
                 </div>
            </div>
@@ -85,67 +85,72 @@ const Single_course = () => {
                   </div>
                     <div className='c_info_c'>
                         <div className='c_info_'>
-                            <b>Module 1: Introduction to Web Development</b>
+                            <b>Module 1: Introduction to Data Science</b>
                             <p>
-                            ·         Overview of web development technologies
-                            ·         Introduction to HTML and CSS
-                            ·         Setting up a development environment
+
+                            Overview of data science and its importance in various industries
+Role of a data scientist and key skills required
+Introduction to data science tools and libraries (e.g., Python, Jupyter Notebooks)
+
                             </p>
                             
-                            <b>Module 2: Front-End Development with React</b>
+                            <b>Module 2: Data Acquisition and Cleaning</b>
                             <p>
-                            ·         Introduction to React and its ecosystem
-                            ·         JSX syntax and component structure
-                            ·         State management and props
-                            ·         Handling user input and events
-                            ·         React Hooks for functional components
-                            ·         Building reusable components
-                            ·         Styling with CSS-in-JS and styled-components
+                            Data collection methods: scraping, APIs, databases
+Data formats: CSV, JSON, XML
+Data cleaning techniques: handling missing values, removing duplicates, data normalization
                             </p>
-                            <b>Module 3: Back-End Development with Node.js and Express.js 	</b>
+                            <b>Module 3: Exploratory Data Analysis (EDA) </b>
                             <p>
-                            ·         Introduction to Node.js and server-side JavaScript
-                            ·         Setting up a Node.js environment
-                            ·         Creating RESTful APIs with Express.js
-                            ·         Handling HTTP requests and responses
-                            ·         Middleware and error handling
-                            ·         Authentication and authorization with JWT
-                            ·         Integrating MongoDB with Mongoose for data persistence
+
+                            Descriptive statistics: mean, median, mode, variance, standard deviation
+Data visualization using matplotlib and seaborn
+Understanding data distributions and relationships between variables
                             </p>
 
-                            <b>Module 4: Database Management with MongoDB </b>
+                            <b>Module 4: Data Manipulation with Pandas </b>
                             <p>
-                            ·         Introduction to MongoDB and NoSQL databases
-                            ·         Basic CRUD operations with MongoDB
-                            ·         Data modeling and schema design
-                            ·         Indexing and querying MongoDB
+                            Introduction to the Pandas library for data manipulation
+Loading and saving data with Pandas
+Data filtering, sorting, and grouping
+Handling categorical data and text data
                             </p>
 
-                            <b>Module 5: Building Full-Stack Applications with React and Node.js</b>
+                            <b>Module 5: Statistical Analysis with Python</b>
                             <p>
-                            ·         Integrating React with Node.js backend Consuming APIs in React applications
-                            ·         Implementing user authentication and authorization
-                            ·         Handling forms and form validation
-                            ·         Implementing pagination and sorting
-                            ·         Deployment strategies for full-stack applications
+
+                            Probability distributions: normal, binomial, Poisson
+Hypothesis testing: t-tests, chi-square tests
+Correlation analysis: Pearson correlation coefficient, Spearman rank correlation
                             </p>
 
-                            <b>Module 6: Advanced Front-End Development with Next.js</b>
+                            <b>Module 6: Introduction to Machine Learning with Scikit-Learn</b>
                             <p>
-                            ·         Introduction to Next.js and server-side rendering (SSR)
-                            ·         Setting up a Next.js project
-                            ·         Routing and navigation in Next.js
-                            ·         Data fetching strategies (Server-side rendering, Static Site Generation, Incremental Static Regeneration)
-                            ·         Optimizing performance and SEO with Next.js
-                            ·         Deploying Next.js applications
-                            </p>
-                            <b>Module 7: Final Project</b>
+                            Overview of machine learning concepts
+Supervised learning vs. unsupervised learning
+Building and evaluating machine learning models using Scikit-Learn                            </p>
+                            <b>Module 7: Feature Engineering</b>
                             <p>
-                            ·         Capstone project to apply all concepts learned throughout the course
-                            ·         Building a full-stack web application from scratch
-                            ·         Implementing features such as user authentication, data management, and real-time updates
-                            ·         Deploying the final project to a hosting platform
+
+                            Feature selection techniques: filter methods, wrapper methods, embedded methods
+Feature scaling and normalization
+Handling categorical features: one-hot encoding, label encoding
                             </p>
+                            <b>Module 7: Model Evaluation and Validation</b>
+                            <p>
+
+                            Cross-validation techniques: k-fold cross-validation, stratified cross-validation
+Performance metrics for classification and regression tasks
+Hyperparameter tuning using grid search and random search
+                            </p>
+                            <b>Module 7: Introduction to Time Series Analysis</b>
+                            <p>
+
+                            Understanding time series data
+Time series visualization and decomposition
+Time series forecasting techniques: ARIMA, Exponential Smoothing
+                            </p>
+                            <b>Final Project</b>
 
                         </div>
 

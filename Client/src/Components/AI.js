@@ -16,7 +16,7 @@ const Single_course = () => {
           console.log(accessToken)
           if (accessToken) {
             setIsAuthenticated(true);
-            const response = await axios.get('https://personal-site-awu4.onrender.com/api/web_development', {
+            const response = await axios.get('https://personal-site-awu4.onrender.com/api/single_course', {
               headers: {
                 Authorization: `Bearer ${accessToken}`
               }

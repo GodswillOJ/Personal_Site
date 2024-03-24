@@ -6,11 +6,16 @@ import { Register, Login, AdminRegister, AdminLogin } from './pages/auth';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import Single_courses from './pages/Single_courses';
+import AI from './pages/AI';
+import Data_analysis from './pages/Data_analysis';
+import Deep_learning from './pages/Deep_learning';
+import Machine_learning from './pages/Machine_learning';
 import Home from './pages/home';
 import About from './pages/About';
 import ResetPassword from './Components/ResetPassword';
 import ForgetPassword from './Components/Forget-password';
 import axios from 'axios';
+import Deep_learning_ from './pages/Deep_learning';
 
 const PrivateRoute = ({ element, authenticated, ...props }) => {
   return authenticated ? element : <Navigate to="/login" />;
@@ -73,7 +78,11 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/registerAdmin?_" element={<AdminRegister />} />
           <Route path="/all_courses" element={<Courses />} />
-          <Route path="/single_course" element={<Single_courses />} />
+          <Route path="/web_development" element={<Single_courses />} />
+          <Route path="/artificial_intelligence" element={<AI />} />
+          <Route path="/machine_learning" element={<Machine_learning />} />
+          <Route path="/data_analysis" element={<Data_analysis />} />
+          <Route path="/deep_learning" element={<Deep_learning_ />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/loginAdmin?_" element={<AdminLogin onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />

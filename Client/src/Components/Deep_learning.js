@@ -16,7 +16,7 @@ const Single_course = () => {
           console.log(accessToken)
           if (accessToken) {
             setIsAuthenticated(true);
-            const response = await axios.get('https://personal-site-awu4.onrender.com/api/web_development', {
+            const response = await axios.get('https://personal-site-awu4.onrender.com/api/single_course', {
               headers: {
                 Authorization: `Bearer ${accessToken}`
               }
@@ -58,17 +58,17 @@ const Single_course = () => {
 
            <div className='single_cont_'>
                 <div className='course_name'>
-                    <h3>Full-Stack Web Programming</h3>
+                    <h3>Deep Learning</h3>
                 </div>
                 <div id='course-hints'>
                     <div id='course-hint'>
-                        <p>Front-end Basis</p>
-                        <p>ReactJs</p>
-                        <p>NodeJs</p>
+                        <p>CNNs</p>
+                        <p>RNNs</p>
+                        
                     </div>
                     <div id='course-hint'>
-                        <p>MongoDB</p>
-                        <p>NextJs</p>
+                        <p>NN</p>
+                        <p>Frameworks, and Tools</p>
                     </div>
                 </div>
            </div>

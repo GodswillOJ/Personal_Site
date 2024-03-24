@@ -86,7 +86,9 @@ const Courses_Comp = () => {
               <div className='each_course_container'>
                     <div className='each_c'>
                           <div className='my_img1'>
-                            <img src={`${process.env.PUBLIC_URL}/images/machine.jpg`} alt="My Image" />
+                            <Link to='/machine_learning'>
+                              <img src={`${process.env.PUBLIC_URL}/images/machine.jpg`} alt="My Image" />
+                            </Link>
                           </div>
 
                           <div className='c_information'>
@@ -96,7 +98,9 @@ const Courses_Comp = () => {
                     </div>
                     <div className='each_c'>
                           <div className='my_img1'>
-                            <img src={`${process.env.PUBLIC_URL}/images/DataAnaly.jpg`} alt="My Image" />
+                            <Link to='/data_analysis'>
+                              <img src={`${process.env.PUBLIC_URL}/images/DataAnaly.jpg`} alt="My Image" />
+                            </Link>
                           </div>
                           <div className='c_information'>
                               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur ipsum quos repellat facere qui fuga sequi fugiat ea maxime</p>
@@ -105,7 +109,7 @@ const Courses_Comp = () => {
                     </div>
                     <div className='each_c'>
                           <div className='my_img1'>
-                            <Link to='/single_course'>
+                            <Link to='/web_development'>
                               <img src={`${process.env.PUBLIC_URL}/images/web.jpg`} alt="My Image" />
                             </Link>
                           </div>
@@ -116,7 +120,9 @@ const Courses_Comp = () => {
                     </div>
                     <div className='each_c'>
                           <div className='my_img1'>
-                            <img src={`${process.env.PUBLIC_URL}/images/AI.jpg`} alt="My Image" />
+                            <Link to='/artificial_intelligence'>
+                              <img src={`${process.env.PUBLIC_URL}/images/AI.jpg`} alt="My Image" />
+                            </Link>
                           </div>
                           <div className='c_information'>
                               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur ipsum quos repellat facere qui fuga sequi fugiat ea maxime</p>
