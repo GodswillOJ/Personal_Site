@@ -28,7 +28,7 @@ export const insertUser = async (req, res) => {
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = new User({ username, email, password: hashedPassword, is_admin: 0 });
+  const newUser = new User({ username, email, password: hashedPassword, role: 'user' });
 
   try {
     const savedUser = await newUser.save();
@@ -64,7 +64,7 @@ export const insertAdmin = async (req, res) => {
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = new User({ username, email, password: hashedPassword, is_admin: 1 });
+  const newUser = new User({ username, email, password: hashedPassword, role: 'admin' });
 
   try {
     const savedUser = await newUser.save();
@@ -88,31 +88,32 @@ export const LoginVerify = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    console.log('Received login request for username:', username);
-
     // Check if the user exists
     const user = await User.findOne({ username });
+
     if (!user) {
-      console.log('User not found:', username);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Check if the password is correct
     const validPassword = await bcrypt.compare(password, user.password);
+
     if (!validPassword) {
-      console.log('Invalid password for user:', username);
-      return res.status(401).json({ error: 'Invalid credentials password or username' });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Generate JWT token
-    if (user.is_admin === 0) {
-      const token = jwt.sign({ userId: user._id }, JWT_Phrase, { expiresIn: '1d' }); // set to 1 day
-      
-      res.json({ access_token: token, userID: user._id });
-    } else {
-      // Change the status to 401 for consistency with the frontend
-      res.status(401).json({ error: 'Invalid credentials' });
+    // Retrieve user's role from the database
+    const role = user.role;
+
+    // Check if the user's role is "admin"
+    if (role !== 'user') {
+      return res.status(403).json({ error: 'Access forbidden for admin users' });
     }
+
+    // Generate JWT token with user's role
+    const token = jwt.sign({ userId: user._id, role }, JWT_Phrase, { expiresIn: '1d' });
+
+    res.json({ access_token: token, userID: user._id });
   } catch (error) {
     console.error('Login error:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -120,46 +121,42 @@ export const LoginVerify = async (req, res) => {
 };
 
 // admin logi verify
-
-export const AdminLoginVerify = async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  if (user.is_admin === 1) {
+  export const AdminLoginVerify = async (req, res) => {
+    const { username, password } = req.body;
+  
     try {
-      console.log('Received login request for username:', username);
-
       // Check if the user exists
+      const user = await User.findOne({ username });
+  
       if (!user) {
-        console.log('User not found:', username);
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-
+  
       // Check if the password is correct
       const validPassword = await bcrypt.compare(password, user.password);
+  
       if (!validPassword) {
-        console.log('Invalid password for user:', username);
-        return res.status(401).json({ error: 'Invalid credentials password or username' });
+        return res.status(401).json({ error: 'Invalid credentials' });
       }
-
-      // Generate JWT token
-      if (user.is_admin === 0) {
-        const token = jwt.sign({ userId: user._id }, JWT_Phrase, { expiresIn: '1d' }); // set to 1 day
-        
-        res.json({ access_token: token, userID: user._id });
-      } else {
-        // Change the status to 401 for consistency with the frontend
-        res.status(401).json({ error: 'Invalid credentials' });
+  
+      // Retrieve user's role from the database
+      const role = user.role;
+  
+      // Check if the user's role is "admin"
+      if (role !== 'admin') {
+        return res.status(403).json({ error: 'Access forbidden for non-admin users' });
       }
+  
+      // Generate JWT token with user's role
+      const token = jwt.sign({ userId: user._id, role }, JWT_Phrase, { expiresIn: '1d' });
+  
+      res.json({ access_token: token, userID: user._id });
     } catch (error) {
       console.error('Login error:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  } else {
-    console.error('Unauthorized User')
-    res.status(401).json({error: 'Invalid User Login, You are not admin'})
-  }
   };
-
+  
 export const Home = async (req, res) => {
   try {
     // Check if the user is logged in

@@ -83,8 +83,9 @@ const userSchema = new  mongoose.Schema({
       type: Date, 
       default: Date.now(),
     }, 
-    is_admin: {
-      type: Number,
+    role: {
+      type: String,
+      enum: ['admin', 'user'],
       required: true
     },
     is_verified: {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faNairaSign, faUser, faMagnifyingGlass, faEnvelope, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 
 const Single_course = () => {
@@ -193,7 +195,17 @@ Time series forecasting techniques: ARIMA, Exponential Smoothing
                     
                 </div>
             </div>
-
+            
+                {/* footer */}
+              <div id="Footer_Dash">
+              <div>
+                <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><FontAwesomeIcon icon={faLinkedin} /></Link>
+                <Link to="https://www.twitter.com/"><FontAwesomeIcon icon={faTwitter} /></Link>
+                <Link to="https://www.instagram.com/godswill_oj/"><FontAwesomeIcon icon={faInstagram} /></Link>
+                <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+                <Link to="https://wwww.facebook.com/"><FontAwesomeIcon icon={faFacebook} /></Link>
+              </div>
+            </div>
         </div>
         )
   }

@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import CounterNav from './Components/CounterNav';
-import { Register, Login, AdminRegister, AdminLogin } from './pages/auth';
+import { Register, Login } from './pages/auth';
+import { AdminRegister, AdminLogin } from './pages/admin_Auth';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import Single_courses from './pages/Single_courses';
@@ -76,7 +77,7 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword isLoggedIn={isLoggedIn} />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/registerAdmin?_" element={<AdminRegister />} />
+          <Route path="/registerAdmin" element={<AdminRegister />} />
           <Route path="/all_courses" element={<Courses />} />
           <Route path="/web_development" element={<Single_courses />} />
           <Route path="/artificial_intelligence" element={<AI />} />
@@ -84,7 +85,7 @@ function App() {
           <Route path="/data_analysis" element={<Data_analysis />} />
           <Route path="/deep_learning" element={<Deep_learning_ />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/loginAdmin?_" element={<AdminLogin onLogin={handleLogin} />} />
+          <Route path="/loginAdmin" element={<AdminLogin onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           {/* Use PrivateRoute for the Dashboard */}
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} authenticated={isLoggedIn} />} />

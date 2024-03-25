@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faNairaSign, faUser, faMagnifyingGlass, faEnvelope, faPalette } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
+import { faLinkedin, faInstagram, faTwitter, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const Single_course = () => {
     const [userData, setUserData] = useState(null);
@@ -58,17 +59,18 @@ const Single_course = () => {
 
            <div className='single_cont_'>
                 <div className='course_name'>
-                    <h3>Full-Stack Web Programming</h3>
+                    <h3>Artificial Intelligence</h3>
                 </div>
                 <div id='course-hints'>
                     <div id='course-hint'>
-                        <p>Front-end Basis</p>
-                        <p>ReactJs</p>
-                        <p>NodeJs</p>
+                        <p>AI Basis</p>
+                        <p>Python Fundamentals for AI</p>
+                        <p>Machine learning</p>
                     </div>
                     <div id='course-hint'>
-                        <p>MongoDB</p>
-                        <p>NextJs</p>
+                        <p>Deep Learning </p>
+                        <p>Computer Vision</p>
+                        <p>Reinforcement Learning</p>
                     </div>
                 </div>
            </div>
@@ -78,75 +80,81 @@ const Single_course = () => {
                   <div id='course_descrip'>
                     <h4 id='course_headline'>About course</h4>
                       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus doloribus culpa distinctio sit harum repellat dolore ratione inventore, nesciunt vero.</p>
-                      <h4>Full-Stack Web Programming Outline</h4>
+                      <h4>Artificial Intelligence Outline</h4>
                       <p id='course_descrip_in'>
-                          This comprehensive course covers the essentials of full-stack web development, focusing on modern technologies and frameworks including HTML, CSS, React, MongoDB, Node.js, and Next.js. Participants will gain hands-on experience building dynamic web applications from scratch, mastering both front-end and back-end development techniques. By the end of the course, students will have the skills to create robust, scalable web applications ready for deployment.
+                      This course provides a comprehensive introduction to artificial intelligence (AI) with a focus on practical implementation using the Python programming language. Students will learn fundamental AI concepts, algorithms, and techniques, and gain hands-on experience through programming assignments and projects. Topics covered include machine learning, neural networks, natural language processing, computer vision, and reinforcement learning.
                       </p>
                   </div>
                     <div className='c_info_c'>
                         <div className='c_info_'>
-                            <b>Module 1: Introduction to Web Development</b>
+                            <b>Module 1: Introduction to Artificial Intelligence</b>
                             <p>
-                            ·         Overview of web development technologies
-                            ·         Introduction to HTML and CSS
-                            ·         Setting up a development environment
+                                      Overview of AI and its applications
+                                      Historical perspective and milestones
+                                      Types of AI: narrow vs. general AI
+                                      Ethics and societal implications of AI
                             </p>
                             
-                            <b>Module 2: Front-End Development with React</b>
+                            <b>Module 2: Python Fundamentals for AI</b>
                             <p>
-                            ·         Introduction to React and its ecosystem
-                            ·         JSX syntax and component structure
-                            ·         State management and props
-                            ·         Handling user input and events
-                            ·         React Hooks for functional components
-                            ·         Building reusable components
-                            ·         Styling with CSS-in-JS and styled-components
+                            Introduction to Python programming language
+Data types, variables, and basic syntax
+Control structures: loops and conditionals
+Functions and modules in Python
+File I/O operations
+
                             </p>
-                            <b>Module 3: Back-End Development with Node.js and Express.js 	</b>
+                            <b>Module 3: Introduction to Machine Learning </b>
                             <p>
-                            ·         Introduction to Node.js and server-side JavaScript
-                            ·         Setting up a Node.js environment
-                            ·         Creating RESTful APIs with Express.js
-                            ·         Handling HTTP requests and responses
-                            ·         Middleware and error handling
-                            ·         Authentication and authorization with JWT
-                            ·         Integrating MongoDB with Mongoose for data persistence
+                            Basics of machine learning and its types
+Supervised, unsupervised, and reinforcement learning
+Overview of key machine learning libraries in Python (e.g., scikit-learn, TensorFlow, PyTorch)
                             </p>
 
-                            <b>Module 4: Database Management with MongoDB </b>
+                            <b>Module 4: Machine Learning with scikit-learn </b>
                             <p>
-                            ·         Introduction to MongoDB and NoSQL databases
-                            ·         Basic CRUD operations with MongoDB
-                            ·         Data modeling and schema design
-                            ·         Indexing and querying MongoDB
+                            Preprocessing data: normalization, feature scaling, and handling missing values
+Classification and regression algorithms (e.g., decision trees, logistic regression, SVM)
+Model evaluation and validation techniques
                             </p>
 
-                            <b>Module 5: Building Full-Stack Applications with React and Node.js</b>
+                            <b>Module 5: Deep Learning Fundamentals</b>
                             <p>
-                            ·         Integrating React with Node.js backend Consuming APIs in React applications
-                            ·         Implementing user authentication and authorization
-                            ·         Handling forms and form validation
-                            ·         Implementing pagination and sorting
-                            ·         Deployment strategies for full-stack applications
+                            Introduction to neural networks
+Building blocks of neural networks: neurons, layers, and activation functions
+Training neural networks using gradient descent and back propagation
+Introduction to deep learning frameworks: TensorFlow and PyTorch
                             </p>
 
-                            <b>Module 6: Advanced Front-End Development with Next.js</b>
+                            <b>Module 6: Deep Learning with TensorFlow</b>
                             <p>
-                            ·         Introduction to Next.js and server-side rendering (SSR)
-                            ·         Setting up a Next.js project
-                            ·         Routing and navigation in Next.js
-                            ·         Data fetching strategies (Server-side rendering, Static Site Generation, Incremental Static Regeneration)
-                            ·         Optimizing performance and SEO with Next.js
-                            ·         Deploying Next.js applications
+                            Building and training neural networks using TensorFlow
+Convolutional Neural Networks (CNNs) for computer vision tasks
+Recurrent Neural Networks (RNNs) for sequential data processing
+Transfer learning and fine-tuning pre-trained models
                             </p>
-                            <b>Module 7: Final Project</b>
+                            <b>Module 7: Natural Language Processing (NLP)</b>
                             <p>
-                            ·         Capstone project to apply all concepts learned throughout the course
-                            ·         Building a full-stack web application from scratch
-                            ·         Implementing features such as user authentication, data management, and real-time updates
-                            ·         Deploying the final project to a hosting platform
+                            Introduction to NLP and its applications
+Text preprocessing techniques: tokenization, stemming, and lemmatization
+Text classification and sentiment analysis using machine learning and deep learning approaches
+Introduction to word embeddings and neural language models
                             </p>
-
+                            <b>Module 7: Computer Vision</b>
+                            <p>
+                            Basics of computer vision and image processing
+Image classification and object detection using CNNs
+Image segmentation and feature extraction techniques
+Applications of computer vision in autonomous vehicles, medical imaging, and surveillance
+                            </p>
+                            <b>Module 7: Reinforcement Learning</b>
+                            <p>
+                            Introduction to reinforcement learning (RL)
+Markov Decision Processes (MDPs) and the RL framework
+Q-learning and deep Q-networks (DQN)
+Applications of reinforcement learning in game playing, robotics, and optimization problems
+                            </p>
+                            <b>Final Project</b>
                         </div>
 
                         <div className='each_course'>
@@ -189,6 +197,16 @@ const Single_course = () => {
                 </div>
             </div>
 
+        {/* footer */}
+        <div id="Footer_Dash">
+        <div>
+            <Link to="https://www.linkedin.com/in/godswill-ogono-861802144/"><FontAwesomeIcon icon={faLinkedin} /></Link>
+            <Link to="https://www.twitter.com/"><FontAwesomeIcon icon={faTwitter} /></Link>
+            <Link to="https://www.instagram.com/godswill_oj/"><FontAwesomeIcon icon={faInstagram} /></Link>
+            <Link to="https://api.whatsapp.com/send?phone=2347036744231&text=Hello, more information!"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+            <Link to="https://wwww.facebook.com/"><FontAwesomeIcon icon={faFacebook} /></Link>
+          </div>
+        </div>
         </div>
         )
   }
