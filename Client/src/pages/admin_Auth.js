@@ -31,7 +31,7 @@ export const AdminLogin = ({ onLogin }) => {
         localStorage.setItem('userID', response.data.userID); // Store user ID in localStorage as well
         onLogin();
     
-        navigate('/dashboard');
+        navigate('/dashboardAdmin');
       } catch (error) {
         console.error('Error in verifying user:', error.message);
     

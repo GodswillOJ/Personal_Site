@@ -5,6 +5,7 @@ import CounterNav from './Components/CounterNav';
 import { Register, Login } from './pages/auth';
 import { AdminRegister, AdminLogin } from './pages/admin_Auth';
 import Dashboard from './pages/Dashboard';
+import DashboardAdmin from './pages/DashboardAdmin';
 import Courses from './pages/Courses';
 import Single_courses from './pages/Single_courses';
 import AI from './pages/AI';
@@ -89,6 +90,7 @@ function App() {
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           {/* Use PrivateRoute for the Dashboard */}
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} authenticated={isLoggedIn} />} />
+          <Route path="/dashboardAdmin" element={<PrivateRoute element={<DashboardAdmin />} authenticated={isLoggedIn} />} />
 
           {/* Add more routes as needed */}
         </Routes>
