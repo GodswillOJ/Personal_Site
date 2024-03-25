@@ -9,6 +9,7 @@ import DashboardAdmin from './pages/DashboardAdmin';
 import Courses from './pages/Courses';
 import Single_courses from './pages/Single_courses';
 import AI from './pages/AI';
+import AddCategory from './pages/AddCat';
 import Data_analysis from './pages/Data_analysis';
 import Deep_learning from './pages/Deep_learning';
 import Machine_learning from './pages/Machine_learning';
@@ -80,6 +81,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/registerAdmin" element={<AdminRegister />} />
           <Route path="/all_courses" element={<Courses />} />
+          <Route path="/addCategory" element={<AddCategory />} />
           <Route path="/web_development" element={<Single_courses />} />
           <Route path="/artificial_intelligence" element={<AI />} />
           <Route path="/machine_learning" element={<Machine_learning />} />

@@ -18,6 +18,7 @@ userRouter.post('/forget-password', userController.forgetPassword);
 userRouter.post('/reset-password/:id/:token', userController.resetPassword); // New route for resetting password
 userRouter.get('/dashboard', isAuthenticated, userController.fetchUserData);
 userRouter.get('/dashboardAdmin', isAuthenticated, userController.fetchUserData);
+userRouter.get('/addCategory', isAuthenticated, userController.fetchUserData);
 userRouter.get('/all_courses', isAuthenticated, userController.fetchCatData);
 userRouter.get('/web_development', isAuthenticated, userController.fetchUserData);
 userRouter.get('/', isAuthenticated, userController.fetchUserData);
