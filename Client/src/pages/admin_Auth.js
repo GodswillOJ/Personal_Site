@@ -67,7 +67,7 @@ export const AdminLogin = ({ onLogin }) => {
             <Link to='/forget-password'>Forget Password</Link>
           </p>
           <div id="redirect_log">
-            <Link to="/registerAdmin?_">Register</Link>
+            <Link to="/registerAdmin">Register</Link>
           </div>
   
           {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -86,41 +86,41 @@ export const AdminLogin = ({ onLogin }) => {
   };
 
 export const AdminRegister = () => {
-const [users, setUsers] = useState([]);
-const [username, setUsername] = useState('');
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState(null);
+      const [users, setUsers] = useState([]);
+      const [username, setUsername] = useState('');
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState(null);
 
-const handleCreateUser = async (e) => {
-    e.preventDefault();
-    try {
-    await axios.post('https://personal-site-awu4.onrender.com/api/registerAdmin', { username, email, password });
-    setUsername('');
-    setEmail('');
-    setPassword('');
-    alert('User added successfully. Proceed to login!');
-    } catch (error) {
-    console.error('Error adding user:', error.message);
-    setError('Error adding user. Please try again.'); // Provide user-friendly feedback
-    } finally {
-    setLoading(false);
-    }
-};
+      const handleCreateUser = async (e) => {
+          e.preventDefault();
+          try {
+          await axios.post('https://personal-site-awu4.onrender.com/api/registerAdmin', { username, email, password });
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          alert('User added successfully. Proceed to login!');
+          } catch (error) {
+          console.error('Error adding user:', error.message);
+          setError('Error adding user. Please try again.'); // Provide user-friendly feedback
+          } finally {
+          setLoading(false);
+          }
+      };
 
-return (
-    <Form 
-        onSubmit={handleCreateUser}
-        username={username} 
-        setUsername={setUsername}
-        email={email} 
-        setEmail={setEmail} 
-        password={password} 
-        setPassword={setPassword}
-        label="Admin Register"
-        />
-    )
+      return (
+          <Form 
+              onSubmit={handleCreateUser}
+              username={username} 
+              setUsername={setUsername}
+              email={email} 
+              setEmail={setEmail} 
+              password={password} 
+              setPassword={setPassword}
+              label="Admin Register"
+              />
+          )
 }
 
   
@@ -146,7 +146,7 @@ return (
             <button type="submit">{label}</button>
             {label === 'Register' && (
               <div id="redirect_log">
-                <Link to="/loginAdmin?_">Login</Link>
+                <Link to="/loginAdmin">Login</Link>
               </div>
             )}
           </form>

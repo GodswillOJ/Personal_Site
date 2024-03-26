@@ -230,12 +230,15 @@ export const sendVerifyMail = async(username, email, userId)=> {
           }
       });
 
+      const VerifyLink = `https://personal-site-static.onrender.com/userMailVerify/${userId}`;
+
       const mailOptions = {
-          from: emailUser,
-          to: email,
-          subject: 'For Verification mail',
-          html: '<p>Hii '+username+', please click here to <a href="https://personal-site-awu4.onrender.com/api/user/verify?id='+ userId +'">Verify</a> your mail</p>'
-      }
+        from: emailUser,
+        to: email,
+        subject: 'Verify Mail Link',
+        html: `<p>Hi ${username},<br/>Please click <a href="${VerifyLink}">here</a> to verify your mail</p>`
+      };
+
       transporter.sendMail(mailOptions, function(error, info){
           if (error) {
               console.log(error)

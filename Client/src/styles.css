@@ -489,6 +489,12 @@ html{
       position: relative;
       margin-top: 10%;
     }
+
+    /* Verify pages */
+
+    .VerifyCont{
+      margin-top: 5%;
+    }
     
     
  @media screen and (max-width: 1025px) {

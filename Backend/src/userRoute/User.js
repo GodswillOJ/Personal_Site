@@ -16,6 +16,8 @@ userRouter.post('/login', userController.LoginVerify);
 userRouter.post('/loginAdmin', userController.AdminLoginVerify);
 userRouter.post('/forget-password', userController.forgetPassword);
 userRouter.post('/reset-password/:id/:token', userController.resetPassword); // New route for resetting password
+userRouter.post('/userMailVerify/:id', userController.resetPassword); // New route for verify email
+userRouter.post('/adminMailVerify/:id', userController.resetPassword); // New route for verify email
 userRouter.get('/dashboard', isAuthenticated, userController.fetchUserData);
 userRouter.get('/dashboardAdmin', isAuthenticated, userController.fetchUserData);
 userRouter.get('/addCategory', isAuthenticated, userController.fetchUserData);

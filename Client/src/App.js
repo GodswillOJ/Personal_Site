@@ -16,6 +16,8 @@ import Machine_learning from './pages/Machine_learning';
 import Home from './pages/home';
 import About from './pages/About';
 import ResetPassword from './Components/ResetPassword';
+import VerifyMail from './Components/VerifyMail';
+import AdminVerifyMail from './Components/AdminVerifyMail';
 import ForgetPassword from './Components/Forget-password';
 import axios from 'axios';
 import Deep_learning_ from './pages/Deep_learning';
@@ -78,6 +80,8 @@ function App() {
           <Route path="/About" element={<About isLoggedIn={isLoggedIn} />} />
           <Route path="/forget-password" element={<ForgetPassword isLoggedIn={isLoggedIn} />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+          <Route path="/userMailVerify/:id" element={<VerifyMail />} />
+          <Route path="/adminMailVerify/:id" element={<AdminVerifyMail />} />
           <Route path="/register" element={<Register />} />
           <Route path="/registerAdmin" element={<AdminRegister />} />
           <Route path="/all_courses" element={<Courses />} />
