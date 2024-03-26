@@ -1,6 +1,5 @@
-// Modified App component
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import CounterNav from './Components/CounterNav';
 import { Register, Login } from './pages/auth';
 import { AdminRegister, AdminLogin } from './pages/admin_Auth';
@@ -22,9 +21,23 @@ import ForgetPassword from './Components/Forget-password';
 import axios from 'axios';
 import Deep_learning_ from './pages/Deep_learning';
 
+
 const PrivateRoute = ({ element, authenticated, ...props }) => {
-  return authenticated ? element : <Navigate to="/login" />;
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  const isAdminRoute = pathname.includes("Admin");
+
+  return authenticated ? (
+    element
+  ) : (
+    <Navigate to={isAdminRoute ? "/loginAdmin" : "/login"} />
+  );
 };
+
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -64,6 +77,7 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('access_token');
   };
+  
 
   if (loading) {
     return <div>Loading...</div>;

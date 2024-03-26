@@ -88,9 +88,19 @@ const DashboardAdmin = () => {
               <div id="dash_board">
                 <div className="dashboard_sec">
                     <div id="dash_head">
-                    <h2>User Dashboard</h2>
+                      <div>
+                        <p>Good Day, {userData.username}!</p>
+
+                        <div className="col">
+                          <nav aria-label="breadcrumb">
+                            <ul className="breadcrumb" id='my_admin_nav'>
+                              <li className="breadcrumb-item"><a href="/dashboardAdmin">Admin dashboard /</a></li>
+                              <li className="breadcrumb-item active"><a href="/admin/add">Add User</a></li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </div>
                       <div id="highlights">
-                          <h1>Good Day, {userData.username}!</h1>
                           <p>Hey {userData.username}, Here is your account overview</p>
                       </div>
                         <>
