@@ -70,7 +70,7 @@ export const insertAdmin = async (req, res) => {
     const savedUser = await newUser.save();
     if (savedUser) {
       // Call sendVerifyMail function with user details
-      sendVerifyMail(savedUser.username, savedUser.email, savedUser._id);
+      sendAdminVerifyMail(savedUser.username, savedUser.email, savedUser._id);
       console.log(savedUser);
       res.json(savedUser);
     } else {
@@ -217,6 +217,39 @@ const port = process.env.PORT
 const emailUser = process.env.EmailUser
 const emailPassword = process.env.EmailPassword
 
+export const sendAdminVerifyMail = async(username, email, userId)=> {
+  try {
+      const transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          requireTLS: true,
+          auth: {
+              user: emailUser,
+              pass: emailPassword
+          }
+      });
+
+      const VerifyLink = `https://personal-site-static.onrender.com/adminMailVerify/${userId}`;
+
+      const mailOptions = {
+        from: emailUser,
+        to: email,
+        subject: 'Verify Mail Link',
+        html: `<p>Hi ${username},<br/>Please click <a href="${VerifyLink}">here</a> to verify your mail</p>`
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+              console.log(error)
+          } else {
+              console.log('Email has been sent:-', info.response)
+          }
+      })
+  } catch (error) {
+      console.log(error.message)
+  }
+}
 export const sendVerifyMail = async(username, email, userId)=> {
   try {
       const transporter = nodemailer.createTransport({
