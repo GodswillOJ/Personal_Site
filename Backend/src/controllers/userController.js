@@ -123,10 +123,12 @@ export const LoginVerify = async (req, res) => {
 // admin logi verify
   export const AdminLoginVerify = async (req, res) => {
     const { username, password } = req.body;
+    console.log(req.body)
   
     try {
       // Check if the user exists
       const user = await User.findOne({ username });
+      console.log(user)
   
       if (!user) {
         return res.status(401).json({ error: 'Invalid credentials' });
@@ -209,6 +211,7 @@ export const fetchCatData = async (req, res) => {
     console.error('Error at backend Server category controller:', error);
     res.status(500).json({ error: 'Internal Server Error Category Controller' });
   }
+
 };
 
 

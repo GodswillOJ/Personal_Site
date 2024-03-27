@@ -500,6 +500,12 @@ html{
       list-style: none;
     }
     
+    /* AddCat Page */
+    .AddCat{
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
     
  @media screen and (max-width: 1025px) {
       .time-frames{

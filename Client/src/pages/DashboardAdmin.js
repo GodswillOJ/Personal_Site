@@ -51,7 +51,7 @@ const DashboardAdmin = () => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />; // Redirect unauthorized users to login page
+    return <Navigate to="/loginAdmin" />; // Redirect unauthorized users to login page
   }
 
   const data = [
@@ -77,7 +77,7 @@ const DashboardAdmin = () => {
                 <ul className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`} id="myDropdown">
                   <Link to=""><li><p>Dashboard</p></li></Link>
                   <Link to=""><li><p>Profile</p></li></Link>
-                  <Link to=""><li><p>Add Course</p></li></Link>
+                  <Link to="/addCategory"><li><p>Add Course</p></li></Link>
                   <Link to=""><li><p>Settings</p></li></Link>
                   <Link to="/addToPop"><li><p>Add Data</p></li></Link>
                   <Link to=""><li><p>Messages</p></li></Link>
